@@ -1,5 +1,7 @@
 ---
 // Footer.astro
+import logoPrimatica from "@/assets/img/logo.png";
+
 const currentYear = new Date().getFullYear();
 
 const quickLinks = [
@@ -29,22 +31,15 @@ const socialLinks = [
 <footer class="relative py-12 sm:py-16 border-t border-white/10 overflow-hidden bg-white/2">
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 mb-10 sm:mb-12">
-      <!-- Brand -->
+<!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-2">
         <a href="#inicio" class="inline-flex items-center gap-3 mb-4 group">
           <div class="relative w-10 h-10 shrink-0">
-            <div
-              class="absolute inset-0 bg-linear-to-br from-[#00D6A1] to-[#ed1d85] rounded-lg transform rotate-12 group-hover:rotate-24deg transition-transform duration-300"
-            >
-            </div>
-            <div
-              class="absolute inset-1 bg-[#0a0b1a] rounded-md flex items-center justify-center"
-            >
-              <span
-                class="font-heading font-bold text-xl text-[#00D6A1]"
-                >P</span
-              >
-            </div>
+            <img 
+              src={logoPrimatica.src} 
+              alt="Prismatica Logo" 
+              class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+            />
           </div>
           <div>
             <span class="font-heading font-semibold text-base sm:text-lg text-white"

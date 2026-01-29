@@ -1,5 +1,7 @@
 ---
 // Header.astro
+import logoPrimatica from "@/assets/img/logo.png";
+
 const navItems = [
   { name: "Inicio", href: "#inicio" },
   { name: "Servicios", href: "#servicios" },
@@ -15,32 +17,25 @@ const navItems = [
   class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 md:py-5 header-animate"
 >
   <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
+    class="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 flex items-center justify-between"
   >
     <!-- Logo - Responsive -->
     <a href="#inicio" class="flex items-center gap-2 sm:gap-3 relative z-10">
-      <div class="relative w-8 h-8 sm:w-10 sm:h-10">
-        <div
-          class="absolute inset-0 bg-linear-to-br from-[#00D6A1] to-[#ed1d85] rounded-lg transform rotate-12"
-        >
-        </div>
-        <div
-          class="absolute inset-1 bg-[#0a0b1a] rounded-md flex items-center justify-center"
-        >
-          <span
-            class="font-heading font-bold text-lg sm:text-xl text-[#00D6A1]"
-            >P</span
-          >
-        </div>
-      </div>
-      <div class="hidden xs:block">
-        <span class="font-heading font-semibold text-base sm:text-lg text-white"
-          >Prismatica</span
-        >
-        <span class="block text-[10px] sm:text-xs text-gray-400"
-          >Software & Automation</span
-        >
-      </div>
+          <div class="relative w-12 h-12 shrink-0">
+            <img 
+              src={logoPrimatica.src} 
+              alt="Prismatica Logo" 
+              class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+            />
+          </div>
+          <div>
+            <span class="font-heading font-semibold text-base sm:text-lg text-white"
+              >Prismatica</span
+            >
+            <span class="block text-xs text-gray-400"
+              >Software & Automation</span
+            >
+          </div>
     </a>
 
     <!-- Desktop Navigation -->
@@ -216,7 +211,7 @@ const navItems = [
   /* Header initial animation */
   .header-animate {
     transform: translateY(-100px);
-    transition: 
+    transition:
       transform 0.6s ease-out,
       background 0.3s ease,
       border-color 0.3s ease,
