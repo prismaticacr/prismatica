@@ -18,7 +18,7 @@ const team = [
     image: diegoImg,
     description:
       "Ingeniero en Informática (UCR) especializado en desarrollo web full-stack y automatizaciones inteligentes. Experiencia en aplicaciones escalables.",
-    social: { linkedin: "#", github: "#", email: "#" },
+    social: { linkedin: "https://www.linkedin.com/in/diego-reyes-b405a6287/", github: "https://github.com/DieReyesCar", email:"https://mail.google.com/mail/?view=cm&to=diereyescarv@gmail.com&su=Contacto%20desde%20la%20web&body=Hola%20Diego,%0A%0AMe%20gustaría%20ponerme%20en%20contacto%20contigo.%0A%0ASaludos."},
   },
   {
     name: "Oscar",
@@ -119,10 +119,12 @@ const team = [
                     </svg>
                   </a>
                   <a
-                    href={member.social.email}
-                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300 active:scale-95"
-                    aria-label={`Email de ${member.name}`}
-                  >
+        href={member.social.email}
+        target="_blank"
+        rel="noopener noreferrer"
+       class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300 active:scale-95"
+         aria-label={`Email de ${member.name}`}
+          >
                     <svg
                       class="w-4 h-4"
                       fill="none"
