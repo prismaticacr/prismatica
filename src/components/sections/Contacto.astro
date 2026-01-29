@@ -7,9 +7,9 @@ const contactInfo = [
 ];
 ---
 
-<section id="contacto" class="relative py-24 sm:py-32 overflow-hidden">
+<section id="contacto" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
       <!-- Left side - Info -->
       <div class="contact-info">
         <span
@@ -17,23 +17,23 @@ const contactInfo = [
           >CONTACTO</span
         >
         <h2
-          class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-white"
+          class="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mt-3 mb-4 sm:mb-6 text-white"
         >
           ¿Listo para <span class="text-[#00D6A1]">Empezar</span>?
         </h2>
-        <p class="text-gray-400 text-lg mb-10">
+        <p class="text-gray-400 text-base sm:text-lg mb-8 sm:mb-10">
           Cuéntanos sobre tu proyecto y te ayudaremos a hacerlo realidad.
           Nuestro equipo está listo para transformar tus ideas.
         </p>
 
-        <div class="space-y-6">
+        <div class="space-y-4 sm:space-y-6">
           {
             contactInfo.map((item, index) => (
-              <div class="flex items-center gap-4 contact-item" style={`animation-delay: ${index * 0.1}s`}>
-                <div class="w-12 h-12 rounded-xl bg-[#00D6A1]/10 text-[#00D6A1] flex items-center justify-center shrink-0">
+              <div class="flex items-center gap-3 sm:gap-4 contact-item" style={`animation-delay: ${index * 0.1}s`}>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#00D6A1]/10 text-[#00D6A1] flex items-center justify-center shrink-0">
                   {item.icon === "mail" && (
                     <svg
-                      class="w-5 h-5"
+                      class="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -49,7 +49,7 @@ const contactInfo = [
                   )}
                   {item.icon === "phone" && (
                     <svg
-                      class="w-5 h-5"
+                      class="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ const contactInfo = [
                   )}
                   {item.icon === "mapPin" && (
                     <svg
-                      class="w-5 h-5"
+                      class="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -87,8 +87,8 @@ const contactInfo = [
                   )}
                 </div>
                 <div>
-                  <span class="text-sm text-gray">{item.label}</span>
-                  <p class="font-medium text-white">{item.value}</p>
+                  <span class="text-xs sm:text-sm text-gray-500">{item.label}</span>
+                  <p class="font-medium text-sm sm:text-base text-white break-all">{item.value}</p>
                 </div>
               </div>
             ))
@@ -100,11 +100,11 @@ const contactInfo = [
       <div class="contact-form">
         <form
           id="contact-form"
-          class="bg-gray-900 backdrop-blur-xl border border-white rounded-2xl p-8"
+          class="bg-gray-900/50 sm:bg-gray-900 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8"
         >
-          <div class="space-y-6">
+          <div class="space-y-4 sm:space-y-6">
             <div>
-              <label for="name" class="text-sm font-medium mb-2 block text-white">
+              <label for="name" class="text-xs sm:text-sm font-medium mb-2 block text-white">
                 Nombre Completo
               </label>
               <input
@@ -112,13 +112,13 @@ const contactInfo = [
                 id="name"
                 name="name"
                 placeholder="Tu nombre"
-                class="w-full px-4 py-3 bg-[#0a0b1a]/40 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:border-[#00D6A1] focus:outline-none focus:ring-2 focus:ring-[#00D6A1]/20 transition-all"
+                class="w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-[#0a0b1a]/40 border border-white/10 rounded-lg text-sm sm:text-base text-white placeholder:text-gray-500 focus:border-[#00D6A1] focus:outline-none focus:ring-2 focus:ring-[#00D6A1]/20 transition-all"
                 required
               />
             </div>
 
             <div>
-              <label for="email" class="text-sm font-medium mb-2 block text-white">
+              <label for="email" class="text-xs sm:text-sm font-medium mb-2 block text-white">
                 Correo Electrónico
               </label>
               <input
@@ -126,13 +126,13 @@ const contactInfo = [
                 id="email"
                 name="email"
                 placeholder="tu@email.com"
-                class="w-full px-4 py-3 bg-[#0a0b1a]/40 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:border-[#00D6A1] focus:outline-none focus:ring-2 focus:ring-[#00D6A1]/20 transition-all"
+                class="w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-[#0a0b1a]/40 border border-white/10 rounded-lg text-sm sm:text-base text-white placeholder:text-gray-500 focus:border-[#00D6A1] focus:outline-none focus:ring-2 focus:ring-[#00D6A1]/20 transition-all"
                 required
               />
             </div>
 
             <div>
-              <label for="message" class="text-sm font-medium mb-2 block text-white">
+              <label for="message" class="text-xs sm:text-sm font-medium mb-2 block text-white">
                 Mensaje
               </label>
               <textarea
@@ -140,17 +140,17 @@ const contactInfo = [
                 name="message"
                 placeholder="Cuéntanos sobre tu proyecto..."
                 rows="5"
-                class="w-full px-4 py-3 bg-[#0a0b1a]/40 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:border-[#00D6A1] focus:outline-none focus:ring-2 focus:ring-[#00D6A1]/20 transition-all resize-none"
+                class="w-full px-3 py-2.5 sm:px-4 sm:py-3 bg-[#0a0b1a]/40 border border-white/10 rounded-lg text-sm sm:text-base text-white placeholder:text-gray-500 focus:border-[#00D6A1] focus:outline-none focus:ring-2 focus:ring-[#00D6A1]/20 transition-all resize-none"
                 required></textarea>
             </div>
 
             <button
               type="submit"
-              class="w-full bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] font-bold py-3 px-6 rounded-lg transition-all duration-300 group inline-flex items-center justify-center shadow-lg hover:shadow-[#00D6A1]/50"
+              class="w-full bg-[#00D6A1] hover:bg-[#00D6A1]/90 active:bg-[#00D6A1]/80 text-[#0a0b1a] font-bold py-3 sm:py-3.5 px-6 rounded-lg transition-all duration-300 group inline-flex items-center justify-center shadow-lg hover:shadow-[#00D6A1]/50 text-sm sm:text-base"
             >
               Enviar Mensaje
               <svg
-                class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+                class="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -198,7 +198,7 @@ const contactInfo = [
   // Add intersection observer for scroll animations
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    rootMargin: "0px 0px -50px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -219,29 +219,38 @@ const contactInfo = [
 </script>
 
 <style>
-
   .contact-info,
   .contact-form {
     opacity: 0;
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
 
-  .contact-info {
-    transform: translateX(-30px);
+  /* Desktop animations */
+  @media (min-width: 1024px) {
+    .contact-info {
+      transform: translateX(-30px);
+    }
+
+    .contact-form {
+      transform: translateX(30px);
+    }
   }
 
-  .contact-form {
-    transform: translateX(30px);
+  /* Mobile/Tablet animations - vertical instead of horizontal */
+  @media (max-width: 1023px) {
+    .contact-info {
+      transform: translateY(-20px);
+    }
+
+    .contact-form {
+      transform: translateY(20px);
+    }
   }
 
-  .contact-info.animate-in {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
+  .contact-info.animate-in,
   .contact-form.animate-in {
     opacity: 1;
-    transform: translateX(0);
+    transform: translate(0, 0);
   }
 
   .contact-item {
@@ -260,5 +269,32 @@ const contactInfo = [
   textarea:focus {
     outline: 2px solid #00D6A1;
     outline-offset: 2px;
+  }
+
+  /* Prevent zoom on input focus in iOS */
+  @media screen and (max-width: 640px) {
+    input,
+    textarea,
+    select {
+      font-size: 16px;
+    }
+  }
+
+  /* Better touch targets for mobile */
+  @media (max-width: 768px) {
+    button {
+      min-height: 44px;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .contact-info,
+    .contact-form,
+    .contact-item {
+      animation: none;
+      transition: opacity 0.3s ease-out;
+      transform: none;
+    }
   }
 </style>

@@ -12,14 +12,14 @@ const navItems = [
 
 <header
   id="header"
-  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 header-animate"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 md:py-5 header-animate"
 >
   <div
     class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between"
   >
-    <!-- Logo -->
-    <a href="#inicio" class="flex items-center gap-3 relative z-10">
-      <div class="relative w-10 h-10">
+    <!-- Logo - Responsive -->
+    <a href="#inicio" class="flex items-center gap-2 sm:gap-3 relative z-10">
+      <div class="relative w-8 h-8 sm:w-10 sm:h-10">
         <div
           class="absolute inset-0 bg-linear-to-br from-[#00D6A1] to-[#ed1d85] rounded-lg transform rotate-12"
         >
@@ -28,23 +28,23 @@ const navItems = [
           class="absolute inset-1 bg-[#0a0b1a] rounded-md flex items-center justify-center"
         >
           <span
-            class="font-heading font-bold text-xl text-[#00D6A1]"
+            class="font-heading font-bold text-lg sm:text-xl text-[#00D6A1]"
             >P</span
           >
         </div>
       </div>
-      <div class="hidden sm:block">
-        <span class="font-heading font-semibold text-lg text-white"
+      <div class="hidden xs:block">
+        <span class="font-heading font-semibold text-base sm:text-lg text-white"
           >Prismatica</span
         >
-        <span class="block text-xs text-gray-400"
+        <span class="block text-[10px] sm:text-xs text-gray-400"
           >Software & Automation</span
         >
       </div>
     </a>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-8">
+    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
       {
         navItems.map((item) => (
           <a
@@ -58,7 +58,7 @@ const navItems = [
       }
     </nav>
 
-    <!-- CTA Button -->
+    <!-- CTA Button - Desktop -->
     <div class="hidden lg:block">
       <a
         href="#contacto"
@@ -71,7 +71,7 @@ const navItems = [
     <!-- Mobile Menu Button -->
     <button
       id="mobile-menu-button"
-      class="lg:hidden p-2 text-white relative z-10"
+      class="lg:hidden p-2 text-white relative z-10 hover:bg-white/10 rounded-lg transition-colors"
       aria-label="Toggle menu"
     >
       <svg
@@ -103,17 +103,17 @@ const navItems = [
     </button>
   </div>
 
-  <!-- Mobile Menu -->
+  <!-- Mobile Menu - Responsive -->
   <div
     id="mobile-menu"
-    class="lg:hidden bg-white/5 backdrop-blur-xl border border-white/10 mt-3 mx-4 rounded-lg p-4 hidden opacity-0 transition-opacity duration-300"
+    class="lg:hidden bg-white/5 backdrop-blur-xl border border-white/10 mt-3 mx-3 sm:mx-4 rounded-lg p-4 sm:p-6 hidden opacity-0 transition-opacity duration-300"
   >
-    <nav class="flex flex-col gap-4">
+    <nav class="flex flex-col gap-3 sm:gap-4">
       {
         navItems.map((item) => (
           <a
             href={item.href}
-            class="mobile-menu-link text-sm font-medium text-gray-300 hover:text-[#00D6A1] transition-colors"
+            class="mobile-menu-link text-sm sm:text-base font-medium text-gray-300 hover:text-[#00D6A1] transition-colors py-2 px-3 rounded-lg hover:bg-white/5"
           >
             {item.name}
           </a>
@@ -121,7 +121,7 @@ const navItems = [
       }
       <a
         href="#contacto"
-        class="bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] font-bold w-full mt-2 py-2 rounded-lg transition-colors text-center"
+        class="bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] font-bold w-full mt-2 py-3 rounded-lg transition-colors text-center text-sm sm:text-base"
       >
         Contáctanos
       </a>
@@ -193,6 +193,17 @@ const navItems = [
       }
     });
   });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const isMenuButton = target.closest("#mobile-menu-button");
+    const isMenu = target.closest("#mobile-menu");
+
+    if (!isMenuButton && !isMenu && !mobileMenu?.classList.contains("hidden")) {
+      toggleMobileMenu();
+    }
+  });
 </script>
 
 <style>
@@ -209,7 +220,8 @@ const navItems = [
       transform 0.6s ease-out,
       background 0.3s ease,
       border-color 0.3s ease,
-      backdrop-filter 0.3s ease;
+      backdrop-filter 0.3s ease,
+      padding 0.3s ease;
   }
 
   .header-animate.show {
@@ -222,7 +234,51 @@ const navItems = [
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+  }
+
+  /* Mobile scrolled adjustments */
+  @media (max-width: 640px) {
+    #header.scrolled {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  /* Tablet scrolled adjustments */
+  @media (min-width: 641px) and (max-width: 1023px) {
+    #header.scrolled {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
+    }
+  }
+
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Mobile menu animation */
+  #mobile-menu {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  /* Custom scrollbar for mobile menu */
+  #mobile-menu::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  #mobile-menu::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+  }
+
+  #mobile-menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 214, 161, 0.5);
+    border-radius: 2px;
+  }
+
+  #mobile-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 214, 161, 0.7);
   }
 </style>

@@ -26,9 +26,6 @@ const aiFeatures = [
 ---
 
 <section id="ia" class="relative py-24 sm:py-32 overflow-hidden">
-  <!-- Starfield background -->
-  <div class="absolute inset-0 bg-[#0a0b1a] starfield"></div>
-
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header -->
     <div class="text-center mb-16 section-header">
@@ -47,7 +44,7 @@ const aiFeatures = [
     </div>
 
     <!-- Flip cards grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {
         aiFeatures.map((feature, index) => (
           <div
@@ -178,6 +175,7 @@ const aiFeatures = [
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const flipCards = document.querySelectorAll(".flip-card");
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
     flipCards.forEach((card) => {
       const inner = card.querySelector(".flip-card-inner");
@@ -187,23 +185,74 @@ const aiFeatures = [
       const title = card.dataset.title;
 
       let iframe = null;
+      let isFlipped = false;
 
-      card.addEventListener("mouseenter", () => {
-        inner && inner.classList.add("flipped");
-      });
-
-      card.addEventListener("mouseleave", () => {
-        inner && inner.classList.remove("flipped");
-        if (iframe && videoContainer) {
-          videoContainer.removeChild(iframe);
-          iframe = null;
-          if (playOverlay) {
-            playOverlay.classList.remove("hidden");
-            playOverlay.style.opacity = "1";
+      // Función para voltear la tarjeta
+      const flipCard = () => {
+        if (inner) {
+          isFlipped = !isFlipped;
+          if (isFlipped) {
+            inner.classList.add("flipped");
+          } else {
+            inner.classList.remove("flipped");
+            // Limpiar iframe al volver
+            if (iframe && videoContainer) {
+              videoContainer.removeChild(iframe);
+              iframe = null;
+              if (playOverlay) {
+                playOverlay.classList.remove("hidden");
+                playOverlay.style.opacity = "1";
+              }
+            }
           }
         }
-      });
+      };
 
+      // Función para desvoltear al hacer click fuera
+      const handleOutsideClick = (e) => {
+        if (isFlipped && !card.contains(e.target)) {
+          flipCard();
+        }
+      };
+
+      // En dispositivos táctiles o mobile/tablet: usar click
+      if (isTouchDevice || window.innerWidth < 1024) {
+        card.addEventListener("click", (e) => {
+          // Si se hace click en el play overlay, no voltear la tarjeta
+          if (e.target.closest(".play-overlay") && isFlipped) {
+            return;
+          }
+          
+          // Si no está en el play overlay, voltear
+          if (!e.target.closest(".play-overlay")) {
+            flipCard();
+          }
+        });
+
+        // Agregar listener para clicks fuera de la tarjeta
+        document.addEventListener("click", handleOutsideClick);
+      } else {
+        // En desktop: usar hover
+        card.addEventListener("mouseenter", () => {
+          inner && inner.classList.add("flipped");
+          isFlipped = true;
+        });
+
+        card.addEventListener("mouseleave", () => {
+          inner && inner.classList.remove("flipped");
+          isFlipped = false;
+          if (iframe && videoContainer) {
+            videoContainer.removeChild(iframe);
+            iframe = null;
+            if (playOverlay) {
+              playOverlay.classList.remove("hidden");
+              playOverlay.style.opacity = "1";
+            }
+          }
+        });
+      }
+
+      // Reproducir video al hacer click en el play overlay
       if (playOverlay) {
         playOverlay.addEventListener("click", (e) => {
           e.stopPropagation();
@@ -225,6 +274,7 @@ const aiFeatures = [
       }
     });
 
+    // Scroll animations
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -273,12 +323,21 @@ const aiFeatures = [
     transform: rotateY(180deg);
   }
 
-  /* Hover glow effect on front card */
-  .flip-card:hover .flip-card-front {
-    border-color: rgba(0, 214, 161, 0.3);
-    box-shadow: 
-      0 0 20px rgba(0, 214, 161, 0.2),
-      0 0 40px rgba(0, 214, 161, 0.1);
+  /* Hover glow effect on front card - solo en desktop */
+  @media (min-width: 1024px) {
+    .flip-card:hover .flip-card-front {
+      border-color: rgba(0, 214, 161, 0.3);
+      box-shadow: 
+        0 0 20px rgba(0, 214, 161, 0.2),
+        0 0 40px rgba(0, 214, 161, 0.1);
+    }
+  }
+
+  /* En mobile/tablet, agregar efecto visual al hacer click */
+  @media (max-width: 1023px) {
+    .flip-card:active .flip-card-front {
+      transform: scale(0.98);
+    }
   }
 
   /* Scroll animations */
@@ -302,5 +361,18 @@ const aiFeatures = [
   .flip-card.animate-in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .flip-card {
+      height: 22rem; /* h-88 aproximadamente */
+    }
+  }
+
+  @media (max-width: 640px) {
+    .flip-card {
+      height: 24rem; /* Más altura en mobile para contenido */
+    }
   }
 </style>

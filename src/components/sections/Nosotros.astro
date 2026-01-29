@@ -31,43 +31,44 @@ const team = [
 ];
 ---
 
-<section id="nosotros" class="relative py-24 sm:py-32 overflow-hidden">
+<section id="nosotros" class="relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
   <div class="absolute inset-0"></div>
 
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16 section-header">
-      <span class="text-[#00D6A1] font-medium text-sm uppercase tracking-wider"
+    <!-- Section header - Responsive -->
+    <div class="text-center mb-12 sm:mb-14 md:mb-16 section-header">
+      <span class="text-[#00D6A1] font-medium text-xs sm:text-sm uppercase tracking-wider"
         >NUESTRO EQUIPO</span
       >
       <h2
-        class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-white"
+        class="font-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-4 sm:mb-6 text-white px-4 sm:px-0"
       >
-        ¿Quiénes <span class="text-[#00D6A1]">Somos</span>?
+        ¿Quiénes <span class="text-[#00D6A1] block xs:inline mt-1 xs:mt-0">Somos?</span>
       </h2>
-      <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+      <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-6 lg:px-0 leading-relaxed">
         Somos un equipo de profesionales apasionados por la tecnología,
         transformando ideas en soluciones digitales innovadoras.
       </p>
     </div>
 
-    <!-- Team grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Team grid - Responsive -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
       {
         team.map((member, index) => (
           <div
             class="group team-card"
             style={`animation-delay: ${index * 0.15}s`}
           >
-            <div class="relative team-card-inner bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center transition-all duration-500 hover:border-[#00D6A1]/70">
+            <div class="relative team-card-inner bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-6 text-center transition-all duration-500 hover:border-[#00D6A1]/70 hover:shadow-[0_20px_40px_rgba(0,214,161,0.1)]">
               <!-- Glow effect on hover -->
-              <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-[#00D6A1]/0 via-[#00D6A1]/0 to-[#00D6A1]/0 opacity-0 group-hover:from-[#00D6A1]/20 group-hover:via-[#00D6A1]/40 group-hover:to-[#00D6A1]/20 group-hover:opacity-10 transition-all duration-500 blur-xl" />
+              <div class="absolute inset-0 rounded-xl sm:rounded-2xl bg-linear-to-r from-[#00D6A1]/0 via-[#00D6A1]/0 to-[#00D6A1]/0 opacity-0 group-hover:from-[#00D6A1]/20 group-hover:via-[#00D6A1]/40 group-hover:to-[#00D6A1]/20 group-hover:opacity-10 transition-all duration-500 blur-xl" />
               
               <!-- Border glow -->
-              <div class="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#00D6A1]/10 transition-all duration-500 glow-border" />
+              <div class="absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent group-hover:border-[#00D6A1]/10 transition-all duration-500 glow-border" />
               
               <div class="relative z-10">
-                <!-- Image -->
-                <div class="relative w-32 h-32 mx-auto mb-6">
+                <!-- Image - Responsive size -->
+                <div class="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 sm:mb-5 md:mb-6">
                   <div class="absolute inset-0 rounded-full bg-linear-to-br from-[#00D6A1] to-[#ed1d85] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
                   <img
                     src={member.image.src}
@@ -76,22 +77,22 @@ const team = [
                   />
                 </div>
 
-                <!-- Info -->
-                <h3 class="font-heading text-xl font-semibold mb-1 text-white">
+                <!-- Info - Responsive typography -->
+                <h3 class="font-heading text-lg sm:text-xl font-semibold mb-1 text-white">
                   {member.name}
                 </h3>
-                <p class="text-[#00D6A1] font-medium text-sm mb-4">
+                <p class="text-[#00D6A1] font-medium text-xs sm:text-sm mb-3 sm:mb-4">
                   {member.role}
                 </p>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6">
                   {member.description}
                 </p>
 
-                <!-- Social -->
-                <div class="flex items-center justify-center gap-4">
+                <!-- Social - Responsive buttons -->
+                <div class="flex items-center justify-center gap-3 sm:gap-4">
                   <a
                     href={member.social.linkedin}
-                    class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300"
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300 active:scale-95"
                     aria-label={`LinkedIn de ${member.name}`}
                   >
                     <svg
@@ -105,7 +106,7 @@ const team = [
                   </a>
                   <a
                     href={member.social.github}
-                    class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300"
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300 active:scale-95"
                     aria-label={`GitHub de ${member.name}`}
                   >
                     <svg
@@ -119,7 +120,7 @@ const team = [
                   </a>
                   <a
                     href={member.social.email}
-                    class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300"
+                    class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D6A1] hover:bg-[#00D6A1]/10 hover:border-[#00D6A1]/30 transition-all duration-300 active:scale-95"
                     aria-label={`Email de ${member.name}`}
                   >
                     <svg
@@ -150,7 +151,7 @@ const team = [
 <script is:inline>
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    rootMargin: "0px 0px -50px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -166,3 +167,94 @@ const team = [
     observer.observe(el);
   });
 </script>
+
+<style>
+  /* Section header animation */
+  .section-header {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .section-header.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Team cards animation */
+  .team-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .team-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Card hover effects */
+  .team-card-inner {
+    transform: translateY(0);
+  }
+
+  /* Desktop only hover effects */
+  @media (min-width: 640px) {
+    .group:hover .team-card-inner {
+      transform: translateY(-8px);
+    }
+
+    .group:hover .glow-border {
+      box-shadow: 
+        0 0 15px rgba(0, 214, 161, 0.3),
+        0 0 30px rgba(0, 214, 161, 0.2),
+        inset 0 0 15px rgba(0, 214, 161, 0.05);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .team-card {
+      transform: translateY(20px);
+    }
+    
+    /* Faster animations on mobile */
+    .team-card.animate-in {
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+  }
+
+  /* Touch devices - prevent hover stuck state */
+  @media (hover: none) {
+    .group:hover .team-card-inner {
+      transform: translateY(0);
+    }
+    
+    .group:active .team-card-inner {
+      transform: scale(0.98);
+    }
+
+    .group:hover .glow-border {
+      box-shadow: none;
+    }
+  }
+
+  /* Prevent text selection on rapid taps */
+  @media (max-width: 640px) {
+    .team-card {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+  }
+
+  /* Tablet layout optimization */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    /* Center last card if odd number */
+    .team-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+</style>

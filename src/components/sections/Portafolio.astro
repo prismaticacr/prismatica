@@ -49,42 +49,42 @@ const clients = [
 ];
 ---
 
-<section id="portfolio" class="border-b relative py-24 sm:py-32 overflow-hidden bg-[white]/2">
+<section id="portfolio" class="border-b relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden bg-white/2">
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Section header -->
-    <div class="text-center mb-16 section-header">
-      <span class="text-[#00D6A1] font-medium text-sm uppercase tracking-wider"
+    <!-- Section header - Responsive -->
+    <div class="text-center mb-12 sm:mb-14 md:mb-16 section-header">
+      <span class="text-[#00D6A1] font-medium text-xs sm:text-sm uppercase tracking-wider"
         >NUESTRO TRABAJO</span
       >
       <h2
-        class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-white"
+        class="font-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-4 sm:mb-6 text-white px-4 sm:px-0"
       >
-        Portfolio de <span class="text-[#00D6A1]">Proyectos</span>
+        Portfolio de <span class="text-[#00D6A1] block xs:inline mt-1 xs:mt-0">Proyectos</span>
       </h2>
-      <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+      <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-6 lg:px-0 leading-relaxed">
         Descubre algunos de los proyectos que hemos desarrollado para nuestros
         clientes.
       </p>
     </div>
 
-    <!-- Projects grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+    <!-- Projects grid - Responsive -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20">
       {
         projects.map((project, index) => (
           <div
             class="group project-card"
             style={`animation-delay: ${index * 0.1}s`}
           >
-            <div class="relative project-card-inner bg-[#0a0b1a] backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-400">
+            <div class="relative project-card-inner bg-[#0a0b1a] backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-[0_20px_40px_rgba(0,214,161,0.15)]">
               <!-- Glow effect on hover -->
-              <div class="absolute inset-0 rounded-2xl bg-linear-to-r from-[#00D6A1]/0 via-[#00D6A1]/0 to-[#00D6A1]/0 opacity-0 group-hover:from-[#00D6A1]/20 group-hover:via-[#00D6A1]/40 group-hover:to-[#00D6A1]/20 group-hover:opacity-40 transition-all duration-500 blur-xl pointer-events-none" />
+              <div class="absolute inset-0 rounded-xl sm:rounded-2xl bg-linear-to-r from-[#00D6A1]/0 via-[#00D6A1]/0 to-[#00D6A1]/0 opacity-0 group-hover:from-[#00D6A1]/20 group-hover:via-[#00D6A1]/40 group-hover:to-[#00D6A1]/20 group-hover:opacity-40 transition-all duration-500 blur-xl pointer-events-none" />
               
               <!-- Border glow -->
-              <div class="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-[#00D6A1]/80 transition-all duration-500 glow-border pointer-events-none" />
+              <div class="absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent group-hover:border-[#00D6A1]/80 transition-all duration-500 glow-border pointer-events-none" />
 
               <div class="relative z-10">
-                <!-- Image -->
-                <div class="relative h-56 overflow-hidden">
+                <!-- Image - Responsive height -->
+                <div class="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -92,11 +92,11 @@ const clients = [
                   />
                   <div class="absolute inset-0 bg-linear-to-t from-[#0a0b1a] via-[#0a0b1a]/60 to-transparent" />
 
-                  <!-- Overlay with "Ver Proyecto" button -->
-                  <div class="absolute inset-0 flex items-center justify-center bg-[#0a0b1a]/80 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <button class="bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] px-6 py-3 rounded-lg inline-flex items-center text-sm font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg">
+                  <!-- Overlay with "Ver Proyecto" button - Hidden on mobile -->
+                  <div class="hidden sm:flex absolute inset-0 items-center justify-center bg-[#0a0b1a]/80 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                    <button class="bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center text-xs sm:text-sm font-bold transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg">
                       <svg
-                        class="w-5 h-5 mr-2"
+                        class="w-4 h-4 sm:w-5 sm:h-5 mr-2"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -114,25 +114,46 @@ const clients = [
                   </div>
                 </div>
 
-                <!-- Content -->
-                <div class="p-6">
-                  <span class="text-[#00D6A1] text-sm font-medium">
+                <!-- Content - Responsive padding -->
+                <div class="p-4 sm:p-5 md:p-6">
+                  <span class="text-[#00D6A1] text-xs sm:text-sm font-medium">
                     {project.category}
                   </span>
-                  <h3 class="font-heading text-xl font-semibold mt-2 mb-3 text-white  transition-colors duration-300">
+                  <h3 class="font-heading text-lg sm:text-xl font-semibold mt-2 mb-2 sm:mb-3 text-white transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                  <p class="text-gray-400 text-sm leading-relaxed mb-3 sm:mb-4">
                     {project.description}
                   </p>
 
-                  <!-- Tags -->
-                  <div class="flex flex-wrap gap-2">
+                  <!-- Tags - Responsive -->
+                  <div class="flex flex-wrap gap-1.5 sm:gap-2">
                     {project.tags.map((tag) => (
-                      <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400">
+                      <span class="px-2 sm:px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-medium text-gray-400">
                         {tag}
                       </span>
                     ))}
+                  </div>
+
+                  <!-- Mobile CTA Button - Only visible on mobile -->
+                  <div class="sm:hidden mt-4">
+                    <button class="w-full bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] px-4 py-2.5 rounded-lg inline-flex items-center justify-center text-sm font-bold transition-all duration-300 shadow-lg active:scale-95">
+                      <svg
+                        class="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                      Ver Proyecto
+                    </button>
                   </div>
                 </div>
               </div>
@@ -144,7 +165,7 @@ const clients = [
 
     <!-- Clients section 
     <div class="text-center clients-section">
-      <h3 class="font-heading text-xl font-semibold mb-8 text-gray-400">
+      <h3 class="font-heading text-lg sm:text-xl font-semibold mb-6 sm:mb-8 text-gray-400 px-4">
         Empresas que confían en nosotros
       </h3>
 
@@ -152,8 +173,8 @@ const clients = [
         <div class="flex animate-marquee">
           {
             [...clients, ...clients].map((client, index) => (
-              <div class="shrink-0 mx-8 px-8 py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#00D6A1]/90 transition-all duration-300">
-                <span class="font-heading text-lg font-semibold text-gray-500 hover:text-[#00D6A1] transition-colors whitespace-nowrap">
+              <div class="shrink-0 mx-4 sm:mx-8 px-6 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg hover:border-[#00D6A1]/90 transition-all duration-300">
+                <span class="font-heading text-base sm:text-lg font-semibold text-gray-500 hover:text-[#00D6A1] transition-colors whitespace-nowrap">
                   {client}
                 </span>
               </div>
@@ -164,13 +185,13 @@ const clients = [
     </div>
 -->
     <!-- CTA 
-    <div class="text-center mt-12 cta-section">
+    <div class="text-center mt-8 sm:mt-12 cta-section px-4">
       <button
-        class="bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] font-bold px-8 py-3 rounded-lg inline-flex items-center group transition-all duration-300 shadow-lg hover:shadow-[#00D6A1]/50"
+        class="bg-[#00D6A1] hover:bg-[#00D6A1]/90 text-[#0a0b1a] font-bold px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg inline-flex items-center justify-center group transition-all duration-300 shadow-lg hover:shadow-[#00D6A1]/50 text-sm sm:text-base w-full sm:w-auto"
       >
         Ver Todos los Proyectos
         <svg
-          class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"
+          class="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -191,7 +212,7 @@ const clients = [
   // Intersection observer for scroll animations
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
+    rootMargin: "0px 0px -50px 0px",
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -260,21 +281,24 @@ const clients = [
     transition: box-shadow 0.5s ease-in-out;
   }
 
-  .group:hover .glow-border {
-    box-shadow: 
-      0 0 20px rgba(0, 214, 161, 0.5),
-      0 0 40px rgba(0, 214, 161, 0.3),
-      0 0 60px rgba(0, 214, 161, 0.1),
-      inset 0 0 20px rgba(0, 214, 161, 0.1);
+  /* Desktop only hover effects */
+  @media (min-width: 640px) {
+    .group:hover .glow-border {
+      box-shadow: 
+        0 0 20px rgba(0, 214, 161, 0.5),
+        0 0 40px rgba(0, 214, 161, 0.3),
+        0 0 60px rgba(0, 214, 161, 0.1),
+        inset 0 0 20px rgba(0, 214, 161, 0.1);
+    }
+
+    .group:hover .project-card-inner {
+      transform: translateY(-5px);
+    }
   }
 
   /* Card hover effects */
   .project-card-inner {
     transform: translateY(0);
-  }
-
-  .group:hover .project-card-inner {
-    transform: translateY(-5px);
   }
 
   /* Section header animation */
@@ -341,5 +365,36 @@ const clients = [
 
   .animate-marquee:hover {
     animation-play-state: paused;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .project-card {
+      transform: translateY(20px);
+    }
+    
+    /* Faster animations on mobile */
+    .project-card.animate-in {
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+  }
+
+  /* Touch devices - prevent hover stuck state */
+  @media (hover: none) {
+    .group:hover .glow-border {
+      box-shadow: 0 0 0px rgba(0, 214, 161, 0);
+    }
+    
+    .group:active .project-card-inner {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Prevent text selection on rapid taps */
+  @media (max-width: 640px) {
+    .project-card {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
   }
 </style>
