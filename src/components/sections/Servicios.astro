@@ -1,0 +1,259 @@
+---
+// ServicesSection.astro
+const services = [
+  {
+    number: "01",
+    icon: "zap",
+    title: "Automatizaciones Inteligentes",
+    description:
+      "Optimizamos procesos para ahorrar tiempo, reducir errores y aumentar la eficiencia de tu negocio.",
+    color: "green",
+  },
+  {
+    number: "02",
+    icon: "globe",
+    title: "Desarrollo Web",
+    description:
+      "Creamos sitios web modernos, rápidos y optimizados que impulsan tu presencia digital.",
+    color: "pink",
+  },
+  {
+    number: "03",
+    icon: "users",
+    title: "Consultoría Digital",
+    description:
+      "Te ayudamos a transformar tu negocio con estrategias digitales efectivas y personalizadas.",
+    color: "green",
+  },
+  {
+    number: "04",
+    icon: "palette",
+    title: "Diseño UX/UI",
+    description:
+      "Diseñamos interfaces intuitivas que mejoran la experiencia de tus usuarios.",
+    color: "pink",
+  },
+  {
+    number: "05",
+    icon: "link2",
+    title: "Integración de Sistemas",
+    description:
+      "Conectamos tus herramientas y plataformas para trabajar de forma unificada.",
+    color: "green",
+  },
+  {
+    number: "06",
+    icon: "bot",
+    title: "Agentes de IA",
+    description:
+      "Desarrollamos agentes inteligentes que automatizan tareas complejas 24/7.",
+    color: "pink",
+  },
+];
+---
+
+<section id="servicios" class="border-t relative py-24 sm:py-32 overflow-hidden bg-[white]/2">
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center mb-16 section-header">
+      <span class="text-[#00D6A1] font-medium text-sm uppercase tracking-wider"
+        >NUESTROS SERVICIOS</span
+      >
+      <h2
+        class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-white"
+      >
+        Soluciones Digitales <span
+          class="text-[#00D6A1]"
+          >Integrales</span
+        >
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+        Combinamos innovación tecnológica con estrategia para impulsar el
+        crecimiento de tu negocio.
+      </p>
+    </div>
+
+    <!-- Services grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        services.map((service, index) => (
+          <div
+            class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-2xl p-8 hover:bg-white/10 hover:border-[#00D6A1]/30 transition-all duration-300 service-card"
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            <!-- Number badge -->
+            <span
+              class={`absolute top-6 right-6 font-heading text-6xl font-bold ${
+                service.color === "green" ? "text-[#ed1d85]/40" : "text-[#00D6A1]/40"
+              }`}
+            >
+              {service.number}
+            </span>
+
+            <!-- Icon -->
+            <div
+              class={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+                service.color === "green"
+                  ? "bg-[#00D6A1]/10 text-[#00D6A1]"
+                  : "bg-[#ed1d85]/10 text-[#ed1d85]"
+              }`}
+            >
+              {service.icon === "zap" && (
+                <svg
+                  class="w-7 h-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              )}
+              {service.icon === "globe" && (
+                <svg
+                  class="w-7 h-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              )}
+              {service.icon === "users" && (
+                <svg
+                  class="w-7 h-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              )}
+              {service.icon === "palette" && (
+                <svg
+                  class="w-7 h-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                  />
+                </svg>
+              )}
+              {service.icon === "link2" && (
+                <svg
+                  class="w-7 h-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                  />
+                </svg>
+              )}
+              {service.icon === "bot" && (
+                <svg
+                  class="w-7 h-7"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              )}
+            </div>
+
+            <!-- Content -->
+            <h3 class="font-heading text-xl font-semibold mb-3 text-white group-hover:text-[#00D6A1] transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-gray-400 leading-relaxed">
+              {service.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Intersection observer for scroll animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -100px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("animate-in");
+      }
+    });
+  }, observerOptions);
+
+  const sectionHeader = document.querySelector(".section-header");
+  const serviceCards = document.querySelectorAll(".service-card");
+
+  if (sectionHeader) observer.observe(sectionHeader);
+  serviceCards.forEach((card) => observer.observe(card));
+</script>
+
+<style>
+  /* Section header animation */
+  .section-header {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .section-header.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Service cards animation */
+  .service-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .service-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

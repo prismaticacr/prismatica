@@ -1,0 +1,74 @@
+---
+---
+
+<div
+  id="background"
+  class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden bg-[#0a0b1a]"
+  style="z-index: -1;"
+>
+</div>
+
+<script is:inline>
+  (function() {
+    function createStars() {
+      const container = document.getElementById("background");
+      
+      if (!container) {
+        setTimeout(createStars, 100);
+        return;
+      }
+
+      // Create 150 regular stars
+      for (let i = 0; i < 150; i++) {
+        const star = document.createElement("div");
+        star.style.position = "absolute";
+        star.style.borderRadius = "50%";
+        star.style.background = "white";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + "px";
+        star.style.height = size + "px";
+        star.style.animation = "starTwinkle " + (Math.random() * 3 + 2) + "s ease-in-out infinite";
+        star.style.animationDelay = Math.random() * 3 + "s";
+        container.appendChild(star);
+      }
+
+      // Add 15 glowing stars
+      for (let i = 0; i < 15; i++) {
+        const glowStar = document.createElement("div");
+        glowStar.style.position = "absolute";
+        glowStar.style.borderRadius = "50%";
+        glowStar.style.background = "white";
+        glowStar.style.left = Math.random() * 100 + "%";
+        glowStar.style.top = Math.random() * 100 + "%";
+        const size = Math.random() * 3 + 2;
+        glowStar.style.width = size + "px";
+        glowStar.style.height = size + "px";
+        glowStar.style.boxShadow = "0 0 " + (Math.random() * 10 + 8) + "px rgba(0, 214, 170, 0.7)";
+        glowStar.style.animation = "starTwinkle " + (Math.random() * 4 + 3) + "s ease-in-out infinite";
+        glowStar.style.animationDelay = Math.random() * 2 + "s";
+        container.appendChild(glowStar);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', createStars);
+    } else {
+      createStars();
+    }
+  })();
+</script>
+
+<style is:global>
+  @keyframes starTwinkle {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+</style>

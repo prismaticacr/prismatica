@@ -1,0 +1,631 @@
+---
+interface Props {
+  webhookUrl?: string;
+  botName?: string;
+  botAvatar?: string;
+  userAvatar?: string;
+  toggleButtonImage?: string;
+  quickActions?: string[];
+}
+
+const {
+  webhookUrl = "AQUI-VA-EL-WEBHOOK",
+  botName = "Asistente IA",
+  botAvatar = "/logo.png",
+  userAvatar = "/logo.png",
+  toggleButtonImage = "/logo.png",
+  quickActions = [
+    "¿Qué servicios ofrecemos?",
+    "¿Qué incluye cada plan?",
+    "Preguntas frecuentes",
+  ],
+} = Astro.props;
+---
+
+<div id="chatbot-container" class="fixed bottom-6 right-6 z-9999">
+  <!-- Floating toggle button -->
+  <button
+    id="chatbot-toggle"
+    class="w-16 h-16 rounded-full bg-linear-to-br from-primary to-accent shadow-[0_4px_20px_rgba(0,214,170,0.4)] hover:shadow-[0_6px_30px_rgba(0,214,170,0.6)] hover:scale-110 transition-all duration-300 flex items-center justify-center animate-pulse-glow"
+    aria-label="Abrir chat"
+  >
+    {
+      toggleButtonImage ? (
+        <img
+          src={toggleButtonImage}
+          alt="Chat"
+          class="w-10 h-10 rounded-full object-cover"
+        />
+      ) : (
+        <svg
+          class="w-7 h-7 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      )
+    }
+  </button>
+
+  <!-- Chat window -->
+  <div id="chatbot-window" class="hidden fixed inset-0 z-9999">
+    <!-- Backdrop -->
+    <div
+      id="chatbot-backdrop"
+      class="absolute inset-0 bg-background/40 backdrop-blur-sm sm:hidden"
+    >
+    </div>
+
+    <!-- Main chat container -->
+    <div
+      id="chatbot-main"
+      class="absolute bottom-0 right-0 w-full h-full sm:bottom-6 sm:right-6 sm:w-400px sm:h-600px sm:max-h-[calc(100vh-48px)] bg-card/60 backdrop-blur-xl border border-foreground/10 sm:rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.3)] flex flex-col opacity-0 translate-y-full sm:translate-y-5 sm:scale-95 transition-all duration-300"
+    >
+      <!-- Header -->
+      <div
+        class="bg-linear-to-br from-primary to-accent p-5 flex items-center justify-between border-b border-white/10 sm:rounded-t-2xl"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full overflow-hidden bg-white/20 flex items-center justify-center"
+          >
+            {
+              botAvatar ? (
+                <img
+                  src={botAvatar}
+                  alt="bot"
+                  class="w-full h-full object-cover"
+                />
+              ) : (
+                <svg
+                  class="w-6 h-6 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              )
+            }
+          </div>
+          <div>
+            <div class="font-semibold text-white">{botName}</div>
+            <div class="flex items-center gap-2 text-sm text-white/90">
+              <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"
+              ></span>
+              En línea
+            </div>
+          </div>
+        </div>
+        <button
+          id="chatbot-close"
+          class="w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-all duration-200 hover:rotate-90"
+          aria-label="Cerrar chat"
+        >
+          <svg
+            class="w-5 h-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Messages area -->
+      <div
+        id="chatbot-messages"
+        class="flex-1 overflow-y-auto p-5 flex flex-col gap-4 bg-background scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
+      >
+        <!-- Messages will be inserted here dynamically -->
+      </div>
+
+      <!-- Input area -->
+      <div
+        class="border-t border-border p-4 bg-card/60 backdrop-blur-xl sm:rounded-b-2xl"
+      >
+        <!-- Quick actions -->
+        <div id="quick-actions-container" class="mb-3">
+          <div
+            id="quick-actions"
+            class="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent"
+          >
+            {
+              quickActions.map((action) => (
+                <button
+                  class="quick-action-btn shrink-0 px-4 py-2 rounded-full border border-border bg-background text-sm hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200 whitespace-nowrap"
+                  data-action={action}
+                >
+                  {action}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Toggle quick actions -->
+        {
+          quickActions.length > 0 && (
+            <button
+              id="toggle-quick-actions"
+              class="flex items-center justify-center gap-2 w-full py-1.5 text-xs text-muted-foreground hover:text-primary transition-colors duration-200 mb-2"
+            >
+              <svg
+                class="chevron-icon w-3 h-3 transition-transform duration-300"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="18 15 12 9 6 15" />
+              </svg>
+              <span class="toggle-text">Ocultar sugerencias</span>
+            </button>
+          )
+        }
+
+        <!-- Message input -->
+        <div class="flex gap-2 items-center">
+          <input
+            id="chatbot-input"
+            type="text"
+            placeholder="Escribe tu mensaje aquí..."
+            class="flex-1 px-4 py-3 border border-border rounded-3xl bg-background text-foreground text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-200 placeholder:text-muted-foreground"
+          />
+          <button
+            id="chatbot-send"
+            class="w-11 h-11 rounded-full bg-linear-to-br from-primary to-accent text-white flex items-center justify-center hover:scale-105 hover:shadow-[0_4px_12px_rgba(0,214,170,0.4)] active:scale-95 transition-all duration-200 shrink-0"
+            aria-label="Enviar mensaje"
+          >
+            <svg
+              class="w-5 h-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ webhookUrl, botAvatar, userAvatar }}>
+  // Configuración
+  const WEBHOOK_URL = webhookUrl;
+  const BOT_AVATAR = botAvatar;
+  const USER_AVATAR = userAvatar;
+
+  // Estado
+  let messages = [];
+  let isTyping = false;
+  let showQuickActions = true;
+  let isMobile = window.innerWidth < 640;
+  const sessionId = `session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+  // Elementos
+  let toggle,
+    chatWindow,
+    chatMain,
+    closeBtn,
+    backdrop,
+    messagesContainer,
+    input,
+    sendBtn,
+    quickActionsContainer,
+    quickActions,
+    toggleQuickActionsBtn;
+
+  // Función para inicializar elementos
+  function getElements() {
+    toggle = document.getElementById("chatbot-toggle");
+    chatWindow = document.getElementById("chatbot-window");
+    chatMain = document.getElementById("chatbot-main");
+    closeBtn = document.getElementById("chatbot-close");
+    backdrop = document.getElementById("chatbot-backdrop");
+    messagesContainer = document.getElementById("chatbot-messages");
+    input = document.getElementById("chatbot-input");
+    sendBtn = document.getElementById("chatbot-send");
+    quickActionsContainer = document.getElementById(
+      "quick-actions-container"
+    );
+    quickActions = document.getElementById("quick-actions");
+    toggleQuickActionsBtn = document.getElementById("toggle-quick-actions");
+  }
+
+  // Check mobile on resize
+  window.addEventListener("resize", () => {
+    isMobile = window.innerWidth < 640;
+  });
+
+  // Format timestamp
+  function formatTime(date) {
+    const time = date.toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+    return time;
+  }
+
+  // Create message element
+  function createMessageElement(msg) {
+    const isUser = msg.sender === "user";
+    const messageDiv = document.createElement("div");
+    messageDiv.className = `flex gap-2.5 animate-message-slide-in ${isUser ? "flex-row-reverse" : ""}`;
+
+    const avatarHtml =
+      !isMobile || isUser
+        ? `
+      <div class="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden flex items-center justify-center ${
+        isUser
+          ? "bg-secondary"
+          : "bg-gradient-to-br from-primary to-accent"
+      }">
+        ${
+          isUser
+            ? USER_AVATAR
+              ? `<img src="${USER_AVATAR}" alt="user" class="w-full h-full object-cover" />`
+              : '<svg class="w-4 h-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>'
+            : BOT_AVATAR
+              ? `<img src="${BOT_AVATAR}" alt="bot" class="w-full h-full object-cover" />`
+              : '<svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>'
+        }
+      </div>
+    `
+        : "";
+
+    messageDiv.innerHTML = `
+      ${avatarHtml}
+      <div class="flex flex-col gap-1 max-w-[75%] ${isUser ? "items-end" : ""}">
+        <div class="px-4 py-3 rounded-2xl ${
+          isUser
+            ? "bg-gradient-to-br from-primary to-accent text-white rounded-br-sm"
+            : "bg-primary/10 border border-primary/20 text-foreground rounded-bl-sm"
+        }">
+          <p class="text-sm leading-relaxed whitespace-pre-wrap">${msg.text}</p>
+        </div>
+        <span class="text-xs text-muted-foreground px-1 flex items-center gap-1">
+          ${formatTime(msg.timestamp)}
+          ${isUser ? `<span class="text-primary">${msg.read ? "✓✓" : "✓"}</span>` : ""}
+        </span>
+      </div>
+    `;
+
+    return messageDiv;
+  }
+
+  // Create typing indicator
+  function createTypingIndicator() {
+    const typingDiv = document.createElement("div");
+    typingDiv.className = "flex gap-2.5";
+    typingDiv.id = "typing-indicator";
+
+    const avatarHtml = !isMobile
+      ? `
+      <div class="w-8 h-8 rounded-full flex-shrink-0 overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary to-accent">
+        ${BOT_AVATAR ? `<img src="${BOT_AVATAR}" alt="bot" class="w-full h-full object-cover" />` : '<svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>'}
+      </div>
+    `
+      : "";
+
+    typingDiv.innerHTML = `
+      ${avatarHtml}
+      <div class="px-4 py-3 rounded-2xl bg-primary/10 border border-primary/20 rounded-bl-sm">
+        <div class="flex gap-1 items-center">
+          <span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay: 0s"></span>
+          <span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay: 0.2s"></span>
+          <span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay: 0.4s"></span>
+        </div>
+      </div>
+    `;
+
+    return typingDiv;
+  }
+
+  // Render messages
+  function renderMessages() {
+    if (!messagesContainer) return;
+
+    messagesContainer.innerHTML = "";
+    messages.forEach((msg) => {
+      messagesContainer.appendChild(createMessageElement(msg));
+    });
+
+    if (isTyping) {
+      messagesContainer.appendChild(createTypingIndicator());
+    }
+
+    setTimeout(() => {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 100);
+  }
+
+  // Send to webhook
+  async function sendToWebhook(text) {
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chatInput: text, sessionId }),
+      });
+
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
+
+      const data = await response.json();
+
+      const fields = [
+        "output",
+        "response",
+        "text",
+        "message",
+        "answer",
+        "reply",
+        "result",
+      ];
+
+      const findResponse = (obj) => {
+        for (const field of fields) {
+          if (obj[field]) {
+            return typeof obj[field] === "string"
+              ? obj[field]
+              : JSON.stringify(obj[field]);
+          }
+        }
+        return null;
+      };
+
+      if (typeof data === "string") return data;
+
+      const direct = findResponse(data);
+      if (direct) return direct;
+
+      if (Array.isArray(data) && data.length > 0) {
+        const fromArray = findResponse(data[0]);
+        if (fromArray) return fromArray;
+      }
+
+      console.log("Respuesta completa del webhook:", data);
+      return "Lo siento, recibí una respuesta pero no pude procesarla correctamente.";
+    } catch (error) {
+      console.error("Error al enviar a webhook:", error);
+      return "Lo siento, hubo un error al conectar con el servidor.";
+    }
+  }
+
+  // Handle send message
+  async function handleSend(text) {
+    const messageText = text || input.value.trim();
+    if (!messageText) return;
+
+    const userMessage = {
+      id: `msg-${Date.now()}`,
+      text: messageText,
+      sender: "user",
+      timestamp: new Date(),
+      read: false,
+    };
+
+    messages.push(userMessage);
+    input.value = "";
+    renderMessages();
+
+    isTyping = true;
+    renderMessages();
+
+    const botResponse = await sendToWebhook(messageText);
+
+    setTimeout(() => {
+      messages = messages.map((m) =>
+        m.sender === "user" ? { ...m, read: true } : m
+      );
+
+      messages.push({
+        id: `msg-${Date.now()}-bot`,
+        text: botResponse,
+        sender: "bot",
+        timestamp: new Date(),
+      });
+
+      isTyping = false;
+      renderMessages();
+    }, 800);
+  }
+
+  // Open chat
+  function openChat() {
+    if (!chatWindow || !toggle) return;
+
+    chatWindow.classList.remove("hidden");
+    toggle.style.display = "none";
+
+    // Trigger animation
+    setTimeout(() => {
+      chatMain.classList.remove("opacity-0", "translate-y-full", "sm:translate-y-5", "sm:scale-95");
+      chatMain.classList.add("opacity-100", "translate-y-0", "sm:scale-100");
+    }, 10);
+
+    if (messages.length === 0) {
+      messages.push({
+        id: "welcome-msg",
+        text: "¡Hola! 👋\n\n¿En qué puedo ayudarte hoy?",
+        sender: "bot",
+        timestamp: new Date(),
+      });
+      renderMessages();
+    }
+
+    window.dispatchEvent(
+      new CustomEvent("chatbot-visibility", { detail: true })
+    );
+  }
+
+  // Close chat
+  function closeChat() {
+    if (!chatWindow || !toggle) return;
+
+    chatMain.classList.add("opacity-0", "translate-y-full", "sm:translate-y-5", "sm:scale-95");
+    chatMain.classList.remove("opacity-100", "translate-y-0", "sm:scale-100");
+
+    setTimeout(() => {
+      chatWindow.classList.add("hidden");
+      toggle.style.display = "flex";
+    }, 300);
+
+    window.dispatchEvent(
+      new CustomEvent("chatbot-visibility", { detail: false })
+    );
+  }
+
+  // Initialize chatbot
+  function initChatbot() {
+    getElements();
+
+    if (!toggle) {
+      console.error("Toggle button not found!");
+      return;
+    }
+
+    // Event listeners
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openChat();
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener("click", closeChat);
+    }
+
+    if (backdrop) {
+      backdrop.addEventListener("click", closeChat);
+    }
+
+    if (sendBtn) {
+      sendBtn.addEventListener("click", () => handleSend());
+    }
+
+    if (input) {
+      input.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") handleSend();
+      });
+    }
+
+    // Quick actions
+    if (quickActions) {
+      quickActions.querySelectorAll(".quick-action-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          handleSend(btn.dataset.action);
+        });
+      });
+    }
+
+    // Toggle quick actions
+    if (toggleQuickActionsBtn) {
+      toggleQuickActionsBtn.addEventListener("click", () => {
+        showQuickActions = !showQuickActions;
+        quickActionsContainer.style.display = showQuickActions
+          ? "block"
+          : "none";
+
+        const chevron = toggleQuickActionsBtn.querySelector(".chevron-icon");
+        const text = toggleQuickActionsBtn.querySelector(".toggle-text");
+
+        if (showQuickActions) {
+          chevron.style.transform = "rotate(0deg)";
+          text.textContent = "Ocultar sugerencias";
+        } else {
+          chevron.style.transform = "rotate(180deg)";
+          text.textContent = "Mostrar sugerencias";
+        }
+      });
+    }
+
+    // Listen for external open event
+    window.addEventListener("open-chatbot", openChat);
+
+    // Click outside to close (desktop only)
+    document.addEventListener("click", (e) => {
+      if (
+        window.innerWidth >= 640 &&
+        chatWindow &&
+        !chatWindow.classList.contains("hidden") &&
+        chatMain &&
+        !chatMain.contains(e.target) &&
+        e.target !== toggle
+      ) {
+        closeChat();
+      }
+    });
+  }
+
+  // Start initialization
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initChatbot);
+  } else {
+    initChatbot();
+  }
+</script>
+
+<style>
+  @keyframes message-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-message-slide-in {
+    animation: message-slide-in 0.3s ease;
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 4px 20px rgba(0, 214, 170, 0.4);
+    }
+    50% {
+      box-shadow: 0 4px 30px rgba(0, 214, 170, 0.6);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  /* Custom scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
+  }
+
+  .scrollbar-thumb-border::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+</style>

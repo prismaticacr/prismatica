@@ -1,0 +1,306 @@
+---
+// AISection.astro
+const aiFeatures = [
+  {
+    icon: "link2",
+    title: "Integración con Cientos de Herramientas",
+    description:
+      "Conectamos CRM, WhatsApp, bases de datos, plataformas internas y APIs para que tus sistemas trabajen juntos en un flujo automatizado.",
+    videoId: "V8Wb3aijSdc",
+  },
+  {
+    icon: "workflow",
+    title: "Lógica Avanzada y Flujos Personalizados",
+    description:
+      "Construimos flujos con reglas inteligentes y lógica a medida que se adaptan a tus procesos actuales y escalan conforme crece tu negocio.",
+    videoId: "V8Wb3aijSdc",
+  },
+  {
+    icon: "fileText",
+    title: "Procesamiento Inteligente de Documentos",
+    description:
+      "Automatizamos la lectura, clasificación y extracción de datos desde documentos para reducir errores y acelerar tiempos.",
+    videoId: "V8Wb3aijSdc",
+  },
+];
+---
+
+<section id="ia" class="relative py-24 sm:py-32 overflow-hidden">
+  <!-- Starfield background -->
+  <div class="absolute inset-0 bg-[#0a0b1a] starfield"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center mb-16 section-header">
+      <span class="text-[#ed1d85] font-medium text-sm uppercase tracking-wider"
+        >INTELIGENCIA ARTIFICIAL</span
+      >
+      <h2
+        class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mt-3 mb-6 text-white"
+      >
+        Soluciones de <span class="text-[#ed1d85]">IA</span> <span class="text-[#ed1d85]">a Medida</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+        No vendemos productos empaquetados. Diseñamos y construimos sistemas
+        específicos para resolver tus desafíos únicos.
+      </p>
+    </div>
+
+    <!-- Flip cards grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {
+        aiFeatures.map((feature, index) => (
+          <div
+            class="flip-card h-80"
+            data-video-id={feature.videoId}
+            data-title={feature.title}
+            style={`animation-delay: ${index * 0.15}s`}
+          >
+            <div class="flip-card-inner">
+              <!-- Front -->
+              <div class="flip-card-front absolute w-full h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col transition-all duration-500">
+                <div class="w-14 h-14 rounded-xl bg-[#00D6A1]/10 text-[#00D6A1] flex items-center justify-center mb-6">
+                  {feature.icon === "link2" && (
+                    <svg
+                      class="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
+                    </svg>
+                  )}
+                  {feature.icon === "workflow" && (
+                    <svg
+                      class="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                      />
+                    </svg>
+                  )}
+                  {feature.icon === "fileText" && (
+                    <svg
+                      class="w-7 h-7"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <h3 class="font-heading text-xl font-semibold mb-4 text-white">
+                  {feature.title}
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed grow">
+                  {feature.description}
+                </p>
+                <div class="mt-4 flex items-center gap-2 text-[#00D6A1] text-sm font-medium">
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>Ver video explicativo</span>
+                </div>
+              </div>
+
+              <!-- Back -->
+              <div class="flip-card-back absolute w-full h-full bg-[#0a0b1a] rounded-2xl overflow-hidden border border-white/10">
+                <div class="relative w-full h-full video-container">
+                  <!-- YouTube thumbnail -->
+                  <img
+                    src={`https://img.youtube.com/vi/${feature.videoId}/maxresdefault.jpg`}
+                    alt={feature.title}
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://img.youtube.com/vi/${feature.videoId}/hqdefault.jpg'"
+                  />
+                  <!-- Dark overlay -->
+                  <div class="absolute inset-0 bg-[#0a0b1a]/40"></div>
+                  <!-- Play button overlay -->
+                  <div class="play-overlay absolute inset-0 flex items-center justify-center cursor-pointer z-10 transition-opacity duration-300">
+                    <div class="w-20 h-20 rounded-full bg-[#00D6A1] flex items-center justify-center shadow-[0_0_40px_rgba(0,214,161,0.5)] hover:scale-110 transition-transform duration-300">
+                      <svg
+                        class="w-8 h-8 text-[#0a0b1a] ml-1"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const flipCards = document.querySelectorAll(".flip-card");
+
+    flipCards.forEach((card) => {
+      const inner = card.querySelector(".flip-card-inner");
+      const videoContainer = card.querySelector(".video-container");
+      const playOverlay = card.querySelector(".play-overlay");
+      const videoId = card.dataset.videoId;
+      const title = card.dataset.title;
+
+      let iframe = null;
+
+      card.addEventListener("mouseenter", () => {
+        inner && inner.classList.add("flipped");
+      });
+
+      card.addEventListener("mouseleave", () => {
+        inner && inner.classList.remove("flipped");
+        if (iframe && videoContainer) {
+          videoContainer.removeChild(iframe);
+          iframe = null;
+          if (playOverlay) {
+            playOverlay.classList.remove("hidden");
+            playOverlay.style.opacity = "1";
+          }
+        }
+      });
+
+      if (playOverlay) {
+        playOverlay.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (!iframe && videoContainer) {
+            iframe = document.createElement("iframe");
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            iframe.title = title || "Video";
+            iframe.className = "absolute inset-0 w-full h-full";
+            iframe.allow =
+              "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            iframe.style.border = "0";
+
+            videoContainer.appendChild(iframe);
+            playOverlay.style.opacity = "0";
+            setTimeout(() => playOverlay.classList.add("hidden"), 300);
+          }
+        });
+      }
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document
+      .querySelectorAll(".section-header, .flip-card")
+      .forEach((el) => observer.observe(el));
+  });
+</script>
+
+
+<style>
+  /* Flip card styles */
+  .flip-card {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  /* Hover glow effect on front card */
+  .flip-card:hover .flip-card-front {
+    border-color: rgba(0, 214, 161, 0.3);
+    box-shadow: 
+      0 0 20px rgba(0, 214, 161, 0.2),
+      0 0 40px rgba(0, 214, 161, 0.1);
+  }
+
+  /* Scroll animations */
+  .section-header {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .section-header.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .flip-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .flip-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
