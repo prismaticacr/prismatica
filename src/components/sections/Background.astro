@@ -2,68 +2,148 @@
 ---
 
 <div
-  id="background"
-  class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden"
+  class="background-container absolute inset-0 pointer-events-none overflow-hidden"
   style="z-index: 1;" 
-  
 >
 </div>
 
-<script is:inline>
-  (function() {
+<script>
+  function createStars() {
+    const containers = document.querySelectorAll<HTMLElement>(".background-container");
     
-    function createStars() {
-      const container = document.getElementById("background");
-      
-      if (!container) {
-        setTimeout(createStars, 100);
-        return;
-      }
+    if (!containers.length) {
+      setTimeout(createStars, 80);
+      return;
+    }
 
-      // Create 150 regular stars
-      for (let i = 0; i < 130; i++) {
+    containers.forEach((container) => {
+      // Evitar duplicar estrellas si ya fueron creadas
+      if (container.dataset.starsCreated === 'true') return;
+      container.dataset.starsCreated = 'true';
+
+      // Fragmento de documento para mejor performance
+      const fragment = document.createDocumentFragment();
+
+      // Crear 130 estrellas regulares
+      for (let i = 0; i < 80; i++) {
         const star = document.createElement("div");
-        star.style.position = "absolute";
-        star.style.borderRadius = "50%";
-        star.style.background = "white";
+        star.className = "star";
         star.style.left = Math.random() * 100 + "%";
         star.style.top = Math.random() * 100 + "%";
         const size = Math.random() * 2 + 1;
         star.style.width = size + "px";
         star.style.height = size + "px";
-        star.style.animation = "starTwinkle " + (Math.random() * 3 + 2) + "s ease-in-out infinite";
+        star.style.animationDuration = (Math.random() * 3 + 2) + "s";
         star.style.animationDelay = Math.random() * 3 + "s";
-        container.appendChild(star);
+        fragment.appendChild(star);
       }
 
-      // Add 15 glowing stars
-      for (let i = 0; i < 15; i++) {
-
+      // Crear 10 estrellas brillantes
+      for (let i = 0; i < 10; i++) {
         const glowStar = document.createElement("div");
-        glowStar.style.position = "absolute";
-        glowStar.style.borderRadius = "50%";
-        glowStar.style.background = "white";
+        glowStar.className = "star glow-star";
         glowStar.style.left = Math.random() * 100 + "%";
         glowStar.style.top = Math.random() * 100 + "%";
         const size = Math.random() * 3 + 2;
         glowStar.style.width = size + "px";
         glowStar.style.height = size + "px";
-        glowStar.style.boxShadow = "0 0 " + (Math.random() * 10 + 8) + "px rgba(0, 214, 170, 0.7)";
-        glowStar.style.animation = "starTwinkle " + (Math.random() * 4 + 3) + "s ease-in-out infinite";
+        const glowIntensity = Math.random() * 10 + 8;
+        glowStar.style.setProperty('--glow-size', glowIntensity + 'px');
+        glowStar.style.animationDuration = (Math.random() * 4 + 3) + "s";
         glowStar.style.animationDelay = Math.random() * 2 + "s";
-        container.appendChild(glowStar);
+        fragment.appendChild(glowStar);
       }
-    }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', createStars);
-    } else {
-      createStars();
-    }
-  })();
+      // Añadir todas las estrellas de una vez
+      container.appendChild(fragment);
+
+      // Función para crear estrella fugaz
+      function createShootingStar() {
+        const shootingStar = document.createElement("div");
+        shootingStar.className = "shooting-star";
+        
+        // Posición aleatoria en el borde superior
+        const startX = Math.random() * 100;
+        shootingStar.style.left = startX + "%";
+        shootingStar.style.top = "-5%";
+        
+        // Variación en la longitud de la estela
+        const length = Math.random() * 80 + 60;
+        shootingStar.style.setProperty('--trail-length', length + 'px');
+        
+        container.appendChild(shootingStar);
+        
+        // Eliminar después de la animación
+        setTimeout(() => {
+          shootingStar.remove();
+        }, 1500);
+      }
+
+      // Crear estrellas fugaces aleatoriamente cada 8-15 segundos
+      function scheduleShootingStar() {
+        const delay = Math.random() * 7000 + 8000; // 8-15 segundos
+        setTimeout(() => {
+          createShootingStar();
+          scheduleShootingStar();
+        }, delay);
+      }
+      scheduleShootingStar();
+
+      // Función para crear cohete OPTIMIZADO
+      function createRocket() {
+        const rocket = document.createElement("div");
+        rocket.className = "rocket";
+        rocket.innerHTML = '🚀';
+        
+        // Posición inicial aleatoria
+        const startX = Math.random() * 80 + 10;
+        rocket.style.setProperty('--start-x', startX + '%');
+        rocket.style.setProperty('--end-x', (startX + (Math.random() * 20 - 10)) + '%');
+        
+        container.appendChild(rocket);
+        
+        // Eliminar después de la animación
+        setTimeout(() => {
+          rocket.remove();
+        }, 6000);
+      }
+
+      // Crear cohete ocasionalmente cada 40-70 segundos (menos frecuente)
+      function scheduleRocket() {
+        const delay = Math.random() * 30000 + 40000; // 40-70 segundos
+        setTimeout(() => {
+          createRocket();
+          scheduleRocket();
+        }, delay);
+      }
+      // Primer cohete después de 20-30 segundos
+      setTimeout(() => {
+        createRocket();
+        scheduleRocket();
+      }, Math.random() * 10000 + 20000);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createStars);
+  } else {
+    createStars();
+  }
 </script>
 
 <style is:global>
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: starTwinkle ease-in-out infinite;
+    will-change: opacity, transform;
+  }
+
+  .glow-star {
+    box-shadow: 0 0 var(--glow-size, 10px) rgba(0, 214, 170, 0.7);
+  }
+
   @keyframes starTwinkle {
     0%, 100% {
       opacity: 0.3;
@@ -72,6 +152,118 @@
     50% {
       opacity: 1;
       transform: scale(1.2);
+    }
+  }
+
+  /* Estrella fugaz */
+  .shooting-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 
+      0 0 10px 2px rgba(255, 255, 255, 0.8),
+      0 0 20px 4px rgba(0, 214, 170, 0.5);
+    animation: shootingStar 1.5s ease-out forwards;
+    will-change: transform, opacity;
+  }
+
+  .shooting-star::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 3px;
+    width: var(--trail-length, 80px);
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(0, 214, 170, 0.6) 100%
+    );
+    transform: translateX(3px) translateY(0.5px);
+    border-radius: 50%;
+  }
+
+  @keyframes shootingStar {
+    0% {
+      transform: translate(0, 0) rotate(45deg);
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate(300px, 300px) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  /* Cohete OPTIMIZADO - Solo usa transform y opacity */
+  .rocket {
+    position: absolute;
+    left: var(--start-x, 50%);
+    bottom: 0;
+    font-size: 1.8rem;
+    animation: rocketFlight 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 8px rgba(255, 200, 100, 0.6));
+    transform: translateY(0) translateX(0) rotate(-45deg) scale(1);
+  }
+
+  @keyframes rocketFlight {
+    0% {
+      transform: translateY(0) translateX(0) rotate(-45deg) scale(0.8);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-150vh) translateX(calc(var(--end-x, 60%) - var(--start-x, 50%))) rotate(-50deg) scale(0.4);
+      opacity: 0;
+    }
+  }
+
+  /* Optimización para dispositivos con recursos limitados */
+  @media (prefers-reduced-motion: reduce) {
+    .star {
+      animation: none;
+      opacity: 0.6;
+    }
+    .shooting-star,
+    .rocket {
+      display: none;
+    }
+  }
+
+  /* Ajustes para móviles */
+  @media (max-width: 768px) {
+    .rocket {
+      font-size: 1.4rem;
+      filter: drop-shadow(0 0 6px rgba(255, 200, 100, 0.5));
+    }
+    
+    @keyframes shootingStar {
+      100% {
+        transform: translate(200px, 200px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes rocketFlight {
+      0% {
+        transform: translateY(0) translateX(0) rotate(-45deg) scale(0.7);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) translateX(calc(var(--end-x, 60%) - var(--start-x, 50%))) rotate(-50deg) scale(0.3);
+        opacity: 0;
+      }
     }
   }
 </style>

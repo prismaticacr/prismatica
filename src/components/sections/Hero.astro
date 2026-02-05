@@ -1,11 +1,14 @@
 ---
 // HeroSection.astro
+import Background from "@/components/sections/Background.astro";
 ---
 
 <section
   id="inicio"
   class="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16"
+  
 >
+<Background />
   <!-- Gradient orbs - Responsive -->
   <div
     class="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-primary/20 rounded-full blur-[80px] sm:blur-[100px] md:blur-[120px] animate-pulse"

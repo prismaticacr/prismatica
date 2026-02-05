@@ -1,13 +1,13 @@
 ---
 import ServiceLayout from "@/layouts/ServiceLayout.astro";
-import { BackgroundBeams } from "@/components/ui/background-beams";
-import { Meteors } from "@/components/ui/meteors";
+import Background from "@/components/sections/Background.astro";
+
 ---
 
 <ServiceLayout title="Agentes de Inteligencia Artificial">
   <!-- Hero Section con BackgroundBeams -->
   <section class="relative min-h-screen h-auto sm:h-screen flex items-center justify-center overflow-hidden py-16 sm:py-0">
-    <BackgroundBeams client:only="react" />
+    <Background />
     <div class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-linear-to-b from-neutral-200 to-neutral-600 leading-tight">
         Agentes de Inteligencia Artificial
@@ -35,7 +35,7 @@ import { Meteors } from "@/components/ui/meteors";
   </section>
 
   <!-- Sección de Cards -->
-  <section class="py-0 sm:py-0 md:py-0 px-4 sm:px-6 lg:px-8 bg-[#0a0b1a]">
+  <section class="py-16 sm:py-12 md:py-12 px-4 sm:px-6 lg:px-8 bg-[#0a0b1a]" >
     <div class="max-w-7xl mx-auto">
       
       <!-- MOBILE & TABLET: Carousel (< 1024px) -->
@@ -54,7 +54,6 @@ import { Meteors } from "@/components/ui/meteors";
                     Son sistemas de software autónomos capaces de analizar información, interpretar contextos y ejecutar acciones de manera inteligente, aprendiendo y adaptándose según los datos y objetivos definidos.
                   </p>
                 </div>
-                <Meteors number={15} client:only="react" />
               </div>
             </div>
 
@@ -84,7 +83,6 @@ import { Meteors } from "@/components/ui/meteors";
                     </li>
                   </ul>
                 </div>
-                <Meteors number={15} client:only="react" />
               </div>
             </div>
 
@@ -115,7 +113,6 @@ import { Meteors } from "@/components/ui/meteors";
                     
                   </ul>
                 </div>
-                <Meteors number={15} client:only="react" />
               </div>
             </div>
 
@@ -211,7 +208,6 @@ import { Meteors } from "@/components/ui/meteors";
                 </li>
               </ul>
             </div>
-             <Meteors number={15} client:only="react" />
           </div>
 
           <!-- Card 3: Más beneficios -->
@@ -243,7 +239,6 @@ import { Meteors } from "@/components/ui/meteors";
                 </li>
               </ul>
             </div>
-            <Meteors number={15} client:only="react" />
           </div>
 
         </div>

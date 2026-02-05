@@ -1,6 +1,7 @@
 ---
 // PortfolioSection.astro
 import ameliaWebsite from "@/assets/img/amelia-website.jpg";
+import Background from "@/components/sections/Background.astro";
 
 const projects = [
   {
@@ -15,8 +16,9 @@ const projects = [
 ];
 ---
 
-<section id="portfolio" class="border-b-0 relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden bg-white/3">
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="portfolio" class="border-b-0 relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
+  <Background/>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header - Responsive -->
     <div class="text-center mb-12 sm:mb-14 md:mb-16 section-header">
       <span class="text-[#00D6A1] font-medium text-xs sm:text-sm uppercase tracking-wider"
@@ -38,10 +40,10 @@ const projects = [
       {
         projects.map((project, index) => (
           <div
-            class="group project-card"
+            class="group project-card relative z-10"
             style={`animation-delay: ${index * 0.1}s`}
           >
-            <div class="relative project-card-inner bg-[#0a0b1a] backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-[0_20px_40px_rgba(0,214,161,0.15)]">
+            <div class="relative project-card-inner bg-[white]/3 backdrop-blur-xl border border-white/10 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-400 hover:shadow-[0_20px_40px_rgba(0,214,161,0.15)]">
               <!-- Glow effect on hover -->
               <div class="absolute inset-0 rounded-xl sm:rounded-2xl bg-linear-to-r from-[#00D6A1]/0 via-[#00D6A1]/0 to-[#00D6A1]/0 opacity-0 group-hover:from-[#00D6A1]/20 group-hover:via-[#00D6A1]/40 group-hover:to-[#00D6A1]/20 group-hover:opacity-40 transition-all duration-500 blur-xl pointer-events-none" />
               
@@ -168,46 +170,6 @@ const projects = [
 </script>
 
 <style>
-  /* Starfield background */
-  .starfield {
-    background-image: 
-      radial-gradient(2px 2px at 20px 30px, white, transparent),
-      radial-gradient(2px 2px at 60px 70px, white, transparent),
-      radial-gradient(1px 1px at 50px 50px, white, transparent),
-      radial-gradient(1px 1px at 130px 80px, white, transparent),
-      radial-gradient(2px 2px at 90px 10px, white, transparent);
-    background-size: 200px 200px;
-    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px, 150px 50px;
-    animation: stars 120s linear infinite;
-  }
-
-  .starfield::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      radial-gradient(1px 1px at 40px 60px, white, transparent),
-      radial-gradient(1px 1px at 110px 90px, white, transparent),
-      radial-gradient(1px 1px at 175px 30px, white, transparent),
-      radial-gradient(2px 2px at 70px 150px, white, transparent);
-    background-size: 250px 250px;
-    background-position: 0 0, 60px 80px, 140px 220px, 90px 120px;
-    opacity: 0.5;
-    animation: stars 180s linear infinite;
-  }
-
-  @keyframes stars {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-200px);
-    }
-  }
-
   /* Glowing border effect */
   .glow-border {
     box-shadow: 0 0 0px rgba(0, 214, 161, 0);
