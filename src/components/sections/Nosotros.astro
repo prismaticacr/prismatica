@@ -8,7 +8,7 @@ const team = [
     role: "Ingeniero en Informático",
     image: diegoImg,
     description:
-      "Ingeniero Informático y fundador de toDeploy Software & Automation, enfocado en el desarrollo de software y sitios web a medida, con experiencia en automatizaciones e inteligencia artificial aplicadas a negocios.",
+      "Ingeniero Informático graduado de la Universidad de Costa Rica y fundador de toDeploy Software & Automation, enfocado en el desarrollo de software y automatizaciones, con experiencia en automatizaciones e inteligencia artificial aplicadas a negocios.",
     social: { 
       linkedin: "https://www.linkedin.com/in/diego-reyes-b405a6287/", 
       github: "https://github.com/DieReyesCar", 
@@ -21,7 +21,7 @@ const team = [
     role: "Soporte TI",
     image: oscarImg,
     description:
-      "Informático especializado en infraestructura tecnologíca de redes, servidores y servicios de la nube, co-fundador de toDeploy Software & Automation. Especialización en soporte TI con buena atención al cliente",
+      "Informático especializado en infraestructura tecnologíca de redes, servidores y servicios de la nube, co-fundador de toDeploy Software & Automation. Especialización en soporte TI con buena atención al cliente.",
     social: { 
       linkedin: "https://www.linkedin.com/in/oscar-benavides-cruz-72021a341/", 
       email: "https://mail.google.com/mail/?view=cm&to=obenavidescruz12@gmail.com&su=Contacto%20desde%20la%20web&body=Hola%20Oscar,%0A%0AMe%20gustaría%20ponerme%20en%20contacto%20contigo.%0A%0ASaludos.",
@@ -41,7 +41,7 @@ const team = [
       >
       <h2
         class="font-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-4 sm:mb-6 text-white px-4 sm:px-0">
-        ¿Quiénes <span class="text-[#3B82F6] block xs:inline mt-1 xs:mt-0">Somos?</span>
+        ¿Quiénes <span class="text-[#3B82F6]">Somos?</span>
       </h2>
       <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-6 lg:px-0 leading-relaxed">
         Somos un equipo de profesionales apasionados por la tecnología,
@@ -69,10 +69,11 @@ const team = [
                 <div class="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-4 sm:mb-5 md:mb-6">
                   <div class="absolute inset-0 rounded-full bg-linear-to-br from-[#3B82F6] to-[#FF6D00] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-lg" />
                   <img
-                    src={member.image.src}
-                    alt={member.name}
-                    class="relative w-full h-full object-cover rounded-full border-2 border-white/20 group-hover:border-[#3B82F6]/50 transition-all duration-500"
-                  />
+                      src={member.image.src}
+                      alt={member.name}
+                      class="relative w-full h-full object-cover rounded-full border-2 border-white/20 group-hover:border-[#3B82F6]/50 transition-all duration-500"
+                      style={member.name === "Diego Reyes" ? "object-position: center 20%;" : ""}
+/>
                 </div>
 
                 <!-- Info - Responsive typography con altura fija -->

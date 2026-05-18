@@ -9,7 +9,6 @@ const services = [
     description:
     "Sistemas web o aplicaciones personalizadas según las necesidades específicas del negocio.",
     color: "green",
-    href: "/servicios/web-design",
   },
   {
     number: "02",
@@ -18,7 +17,6 @@ const services = [
     description:
            "Automatización de tareas repetitivas y flujos operativos (formularios, correos, reportes, integraciones entre sistemas).",
     color: "pink",
-    href: "/servicios/automation",
   },
   {
     number: "03",
@@ -27,7 +25,6 @@ const services = [
     description:
            "Acompañamiento continuo para actualizar, optimizar y mejorar tu sitio web, asegurando que la información y el contenido siempre estén al día.",
     color: "green",
-    href: "/servicios/digital-support",
   },
   {
     number: "04",
@@ -36,7 +33,6 @@ const services = [
     description:
       "Sitios corporativos, landing pages y plataformas web enfocadas en rendimiento, experiencia de usuario y escalabilidad.",
     color: "pink",
-    href: "/servicios/professional-web-design",
   },
   {
     number: "05",
@@ -45,7 +41,6 @@ const services = [
     description:
       "Integración de APIs, plataformas externas y herramientas existentes para que todo el ecosistema digital funcione de forma unificada.",
     color: "green",
-    href: "/servicios/integration",
   },
   {
     number: "06",
@@ -54,7 +49,6 @@ const services = [
     description:
       "Agentes autónomos capaces de ejecutar tareas específicas como atención al cliente, seguimiento de leads, generación de reportes o asistencia interna.",
     color: "pink",
-    href: "/servicios/ai-agents",
   },
 ];
 ---
@@ -69,10 +63,7 @@ const services = [
       <h2
         class="font-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-4 sm:mb-6 text-white px-4 sm:px-0"
       >
-        Soluciones Digitales <span
-          class="text-[#3B82F6] block xs:inline mt-1 xs:mt-0"
-          >Integrales</span
-        >
+        Soluciones  <span class="text-[#3B82F6]" >Digitales</span>
       </h2>
       <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-6 lg:px-0 leading-relaxed">
         Combinamos innovación tecnológica con estrategia para impulsar el
@@ -87,7 +78,6 @@ const services = [
           {services.map((service) => (
             <div class="shrink-0 w-full px-2">
               <a
-                href={service.href} 
                 class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-xl p-6 hover:bg-white/10 hover:border-[#3B82F6]/30 transition-all duration-300 active:scale-[0.98] h-full flex flex-col cursor-pointer"
               >
                 <!-- Number badge -->
@@ -195,7 +185,6 @@ const services = [
     <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
       {services.map((service, index) => (
         <a
-          href={service.href} 
           class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 hover:bg-white/10 hover:border-[#3B82F6]/30 transition-all duration-300 service-card hover:shadow-[0_20px_40px_rgba(0,214,161,0.1)] hover:-translate-y-2 block cursor-pointer"
           style={`animation-delay: ${index * 0.1}s`}
         >
