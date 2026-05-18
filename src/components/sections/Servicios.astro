@@ -63,14 +63,14 @@ const services = [
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section header - Responsive -->
     <div class="text-center mb-12 sm:mb-14 md:mb-16 section-header">
-      <span class="text-[#00D6A1] font-medium text-xs sm:text-sm uppercase tracking-wider"
+      <span class="text-[#3B82F6] font-medium text-xs sm:text-sm uppercase tracking-wider"
         >NUESTROS SERVICIOS</span
       >
       <h2
         class="font-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-4 sm:mb-6 text-white px-4 sm:px-0"
       >
         Soluciones Digitales <span
-          class="text-[#00D6A1] block xs:inline mt-1 xs:mt-0"
+          class="text-[#3B82F6] block xs:inline mt-1 xs:mt-0"
           >Integrales</span
         >
       </h2>
@@ -88,12 +88,12 @@ const services = [
             <div class="shrink-0 w-full px-2">
               <a
                 href={service.href} 
-                class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-xl p-6 hover:bg-white/10 hover:border-[#00D6A1]/30 transition-all duration-300 active:scale-[0.98] h-full flex flex-col cursor-pointer"
+                class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-xl p-6 hover:bg-white/10 hover:border-[#3B82F6]/30 transition-all duration-300 active:scale-[0.98] h-full flex flex-col cursor-pointer"
               >
                 <!-- Number badge -->
                 <span
                   class={`absolute top-4 right-4 font-heading text-4xl font-bold ${
-                    service.color === "green" ? "text-[#ed1d85]/40" : "text-[#00D6A1]/40"
+                    service.color === "green" ? "text-[#FF6D00]/40" : "text-[#3B82F6]/40"
                   }`}
                 >
                   {service.number}
@@ -103,8 +103,8 @@ const services = [
                 <div
                   class={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 shrink-0 ${
                     service.color === "green"
-                      ? "bg-[#00D6A1]/10 text-[#00D6A1]"
-                      : "bg-[#ed1d85]/10 text-[#ed1d85]"
+                      ? "bg-[#3B82F6]/10 text-[#3B82F6]"
+                      : "bg-[#FF6D00]/10 text-[#FF6D00]"
                   } group-hover:scale-110 transition-transform duration-300`}
                 >
                   {service.icon === "zap" && (
@@ -141,7 +141,7 @@ const services = [
 
                 <!-- Content -->
                 <div class="grow flex flex-col">
-                  <h3 class="font-heading text-lg font-semibold mb-2 text-white group-hover:text-[#00D6A1] transition-colors pr-12">
+                  <h3 class="font-heading text-lg font-semibold mb-2 text-white group-hover:text-[#3B82F6] transition-colors pr-12">
                     {service.title}
                   </h3>
                   <p class="text-gray-400 text-sm leading-relaxed">
@@ -159,7 +159,7 @@ const services = [
         <!-- Previous Button -->
         <button
           id="prev-mobile"
-          class="w-10 h-10 bg-[#00D6A1] text-[#0a0b1a] rounded-full flex items-center justify-center hover:bg-[#00D6A1]/90 transition-colors"
+          class="w-10 h-10 bg-[#3B82F6] text-[#0a0b1a] rounded-full flex items-center justify-center hover:bg-[#3B82F6]/90 transition-colors"
           aria-label="Servicio anterior"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -181,7 +181,7 @@ const services = [
         <!-- Next Button -->
         <button
           id="next-mobile"
-          class="w-10 h-10 bg-[#00D6A1] text-[#0a0b1a] rounded-full flex items-center justify-center hover:bg-[#00D6A1]/90 transition-colors"
+          class="w-10 h-10 bg-[#3B82F6] text-[#0a0b1a] rounded-full flex items-center justify-center hover:bg-[#3B82F6]/90 transition-colors"
           aria-label="Siguiente servicio"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -196,13 +196,13 @@ const services = [
       {services.map((service, index) => (
         <a
           href={service.href} 
-          class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 hover:bg-white/10 hover:border-[#00D6A1]/30 transition-all duration-300 service-card hover:shadow-[0_20px_40px_rgba(0,214,161,0.1)] hover:-translate-y-2 block cursor-pointer"
+          class="group relative bg-[#0a0b1a] backdrop-blur-xl border border-[#0a0b1a] rounded-xl sm:rounded-2xl p-6 sm:p-7 md:p-8 hover:bg-white/10 hover:border-[#3B82F6]/30 transition-all duration-300 service-card hover:shadow-[0_20px_40px_rgba(0,214,161,0.1)] hover:-translate-y-2 block cursor-pointer"
           style={`animation-delay: ${index * 0.1}s`}
         >
           <!-- Number badge -->
           <span
             class={`absolute top-4 right-4 sm:top-6 sm:right-6 font-heading text-4xl sm:text-5xl md:text-6xl font-bold ${
-              service.color === "green" ? "text-[#ed1d85]/40" : "text-[#00D6A1]/40"
+              service.color === "green" ? "text-[#FF6D00]/40" : "text-[#3B82F6]/40"
             }`}
           >
             {service.number}
@@ -212,8 +212,8 @@ const services = [
           <div
             class={`w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-5 md:mb-6 ${
               service.color === "green"
-                ? "bg-[#00D6A1]/10 text-[#00D6A1]"
-                : "bg-[#ed1d85]/10 text-[#ed1d85]"
+                ? "bg-[#3B82F6]/10 text-[#3B82F6]"
+                : "bg-[#FF6D00]/10 text-[#FF6D00]"
             } group-hover:scale-110 transition-transform duration-300`}
           >
             {service.icon === "zap" && (
@@ -249,7 +249,7 @@ const services = [
           </div>
 
           <!-- Content -->
-          <h3 class="font-heading text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white group-hover:text-[#00D6A1] transition-colors pr-12 sm:pr-14">
+          <h3 class="font-heading text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-white group-hover:text-[#3B82F6] transition-colors pr-12 sm:pr-14">
             {service.title}
           </h3>
           <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
@@ -258,7 +258,7 @@ const services = [
 
           <!-- Hover indicator -->
           <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
-            <svg class="w-5 h-5 text-[#00D6A1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </div>
@@ -287,10 +287,10 @@ const services = [
     // Update dots
     dots.forEach((dot, i) => {
       if (i === currentIndexMobile) {
-        dot.classList.add('bg-[#00D6A1]', 'w-8');
+        dot.classList.add('bg-[#3B82F6]', 'w-8');
         dot.classList.remove('bg-gray-600', 'w-2.5');
       } else {
-        dot.classList.remove('bg-[#00D6A1]', 'w-8');
+        dot.classList.remove('bg-[#3B82F6]', 'w-8');
         dot.classList.add('bg-gray-600', 'w-2.5');
       }
     });
