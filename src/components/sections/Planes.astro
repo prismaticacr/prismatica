@@ -1,0 +1,611 @@
+---
+// PlansSection.astro
+import Background from "@/components/sections/Background.astro";
+interface Plan {
+  name: string;
+  priceUSD: number | null;
+  period: string | null;
+  cta: string;
+  ctaLink: string;
+  highlight: boolean;
+  description?: string;
+  featuresLabel?: string;
+  features: string[];
+}
+
+interface Category {
+  id: string;
+  label: string;
+  note: string;
+  plans: Plan[];
+}
+
+const categories: Category[] = [
+  {
+    id: "chatbots",
+    label: "Chatbots",
+    note: "Todos los planes incluyen 10 horas de correciones y requieren una cuota inicial de integración.",
+    plans: [
+      {
+        name: "Básico",
+        priceUSD: 140,
+        period: "/mes",
+        cta: "Consultar",
+        ctaLink: "#contacto",
+        highlight: false,
+        features: [
+          "Chatbot con IA conversacional",
+          "WhatsApp",
+          "Registro de historial guardado en base de datos",
+          "Fuente de conocimientos básica",
+          "Capacidad de tomar el control en cualquier momento",
+          "Capaz de manejar texto y audios",
+          "Soporte para dudas generales",
+        ],
+      },
+      {
+        name: "Estándar",
+        priceUSD: 190,
+        period: "/mes",
+        cta: "Consultar",
+        ctaLink: "#contacto",
+        highlight: true,
+        features: [
+          "Todo el plan básico",
+          "Aplicación para la gestión de conversaciones",
+          "Clasificación automática de consultas",
+          "Agendamiento de citas",
+          "Capaz de manejar fotos, videos y PDFs",
+          "Fuente de conocimientos vectorizada",
+        ],
+      },
+      {
+        name: "A la Medida",
+        priceUSD: null,
+        period: null,
+        cta: "Consultar",
+        ctaLink: "#contacto",
+        highlight: false,
+        description: "Para proyectos más complejos o con necesidades específicas. Conversamos y construimos exactamente lo que tu negocio necesita.",
+        featuresLabel: "Algunos ejemplos de lo que se puede hacer:",
+        features: [
+          "Funcionalidades definidas según tus necesidades",
+          "Integraciones con tus sistemas actuales (CRM, APIs, entre otros)",
+          "Acompañamiento personalizado",
+        ],
+      },
+    ],
+  },
+
+ {
+    id: "web",
+    label: "Sitios Web",
+    note: "Todos los planes incluyen soporte técnico y mantenimiento mensual. Se cobra una cuota de configuración al inicio.",
+    plans: [
+      {
+        name: "Sencillo",
+        priceUSD: 70,
+        period: "/mes ",
+        cta: "Consultar",
+        ctaLink: "#contacto",
+        highlight: false,
+        features: [
+          "Hasta 6 secciones (hero, sobre nosotros, servicios, galería, testimonios, contacto)",
+          "Diseño adaptado para celular, tablet y computadora",
+          "Formulario de contacto",
+          "Botón de WhatsApp flotante",
+          "Galería de fotos",
+          "Sección de testimonios",
+          "FAQ (preguntas frecuentes)",
+          "SEO básico (títulos, descripciones, velocidad de carga)",
+          "Indexación en Google",
+          "SSL y dominio incluidos",
+          "Respuesta en 48 horas",
+        ],
+      },
+      {
+        name: "Estándar",
+        priceUSD: 110,
+        period: "/mes ",
+        cta: "Consultar",
+        ctaLink: "#contacto",
+        highlight: true,
+        features: [
+          "Todo lo del plan sencillo",
+          "Hasta 9 secciones",
+          "Chatbot que responde preguntas frecuentes las 24 horas desde tu web",
+          "Configuración del chatbot con la información de tu negocio",
+          "Respuesta prioritaria",
+        ],
+      },
+      {
+        name: "A la Medida",
+        priceUSD: null,
+        period: null,
+        cta: "Consultar",
+        ctaLink: "#contacto",
+        highlight: false,
+        description: "Para proyectos más complejos o con necesidades específicas. Conversamos y construimos exactamente lo que tu negocio necesita.",
+        featuresLabel: "Algunos ejemplos de lo que se puede hacer:",
+        features: [
+            "Tienda en línea con carrito y pagos",
+            "Sitio empresarial multinivel",
+            "Sistema de reservas o citas",
+            "Catálogo de productos interactivo",
+            "Blog o portal de noticias",
+            "Menú digital para restaurantes",
+            "Automatizaciones de tareas repetitivas",
+            ],
+        },
+    ],
+  },
+];
+---
+
+<section id="planes" class="relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
+  <Background />
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-12 sm:mb-14 md:mb-16 plans-header">
+      <span class="text-[#3B82F6] font-medium text-xs sm:text-sm uppercase tracking-wider">
+        PLANES Y PRECIOS
+      </span>
+      <h2 class="font-heading text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 mb-4 sm:mb-6 text-white px-4 sm:px-0">
+        Elige tu <span class="text-[#3B82F6]">Plan</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg px-4 sm:px-6 lg:px-0 leading-relaxed">
+        Soluciones adaptadas a cada etapa de tu negocio. Desde un primer chatbot hasta una plataforma completamente a la medida.
+      </p>
+    </div>
+
+    <!-- Category tabs (descomentar bloque web del frontmatter para activar) -->
+    <div id="plan-tabs-container" class="flex justify-center mb-10 sm:mb-12" style="display: none !important;">
+      <div class="flex gap-2 p-1 bg-white/5 border border-white/10 rounded-xl">
+        {categories.map((cat, i) => (
+          <button
+            class={`plan-tab px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              i === 0
+                ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/30"
+                : "text-gray-400 hover:text-white"
+            }`}
+            data-category={cat.id}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Currency toggle — botón flotante esquina superior derecha de la sección -->
+    <div class="absolute top-6 right-4 sm:top-8 sm:right-6 lg:right-8 z-20 flex flex-col items-end gap-2">
+
+      <!-- Toggle pill -->
+      <div class="flex items-center gap-1 p-1 bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm shadow-lg">
+        <button
+          id="btn-usd"
+          class="currency-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 bg-[#3B82F6] text-white shadow-md shadow-[#3B82F6]/30"
+          data-currency="usd"
+        >
+          USD $
+        </button>
+        <button
+          id="btn-crc"
+          class="currency-btn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 text-gray-400 hover:text-white"
+          data-currency="crc"
+        >
+          CRC ₡
+        </button>
+      </div>
+
+      <!-- Exchange rate indicator (aparece debajo del toggle al activar CRC) -->
+      <div id="exchange-info" class="hidden items-center gap-1 text-[10px] sm:text-xs text-gray-500 bg-white/5 border border-white/10 rounded-lg px-2.5 py-1.5 backdrop-blur-sm max-w-[200px] sm:max-w-none text-right">
+        <svg class="w-3 h-3 text-gray-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        <span id="exchange-rate-text">Cargando...</span>
+      </div>
+
+    </div>
+
+    <!-- Espaciado antes de los paneles -->
+    <div class="mb-10 sm:mb-12"></div>
+
+    <!-- Category panels -->
+    {categories.map((cat, catIndex) => (
+      <div
+        class="plan-panel"
+        data-panel={cat.id}
+        style={catIndex !== 0 ? "display: none;" : ""}
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {cat.plans.map((plan, index) => (
+            <div
+              class={`plan-card group relative flex flex-col ${plan.highlight ? "md:-translate-y-3" : ""}`}
+              style={`animation-delay: ${index * 0.1}s`}
+            >
+              <!-- Popular badge -->
+              {plan.highlight && (
+                <div class="absolute -top-4 left-0 right-0 flex justify-center z-10">
+                  <span class="bg-[#3B82F6] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-[#3B82F6]/40 uppercase tracking-wider">
+                    Más Popular
+                  </span>
+                </div>
+              )}
+
+              <div
+                class={`relative flex flex-col h-full backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300
+                  ${plan.highlight
+                    ? "bg-white/8 border-2 border-[#3B82F6]/60 shadow-[0_20px_60px_rgba(59,130,246,0.2)]"
+                    : "bg-white/3 border border-white/10 hover:border-[#3B82F6]/30 hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)]"
+                  }`}
+              >
+                {plan.highlight && (
+                  <div class="absolute inset-0 bg-[#3B82F6]/5 pointer-events-none rounded-2xl" />
+                )}
+
+                <div class="relative z-10 flex flex-col h-full p-6 sm:p-8">
+
+                  <!-- Plan name -->
+                  <div class="mb-6">
+                    <h3 class="font-heading text-xl sm:text-2xl font-bold text-white mb-4">
+                      {plan.name}
+                    </h3>
+
+                    <!-- Price -->
+                    {plan.priceUSD ? (
+                      <div class="min-h-[5rem]">
+                        <!-- Precio original tachado -->
+                        <div class="flex items-center gap-2 mb-1">
+                          <span
+                            class="price-original line-through text-gray-500 text-base sm:text-lg"
+                            data-usd={plan.priceUSD}
+                          >
+                            ${plan.priceUSD}
+                          </span>
+                          <span class="bg-[#FF6D00]/15 text-[#FF6D00] text-xs font-bold px-2 py-0.5 rounded-full border border-[#FF6D00]/25">
+                            −40% primer mes
+                          </span>
+                        </div>
+                        <!-- Precio con descuento -->
+                        <div class="price-display flex items-end gap-1">
+                          <span
+                            class="price-amount text-4xl sm:text-5xl font-bold text-white transition-all duration-300"
+                            data-usd={plan.priceUSD}
+                          >
+                            ${Math.round(plan.priceUSD * 0.6)}
+                          </span>
+                          <span class="price-period text-gray-400 text-sm mb-1.5">
+                            {plan.period}
+                          </span>
+                        </div>
+                      </div>
+                    ) : (
+                      <div class="min-h-[5rem] flex flex-col justify-center gap-1">
+                        <p class="text-gray-300 text-lg font-medium">Consultar precio</p>
+                        {plan.description && (
+                          <p class="text-gray-500 text-sm leading-relaxed">{plan.description}</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  <!-- CTA Button -->
+                  <a
+                    href={plan.ctaLink}
+                    class={`w-full text-center py-3 px-6 rounded-xl text-sm font-bold transition-all duration-300 mb-6 block
+                      ${plan.highlight
+                        ? "bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white shadow-lg shadow-[#3B82F6]/30 hover:shadow-[#3B82F6]/50 hover:scale-[1.02] active:scale-[0.98]"
+                        : "bg-white/8 hover:bg-[#3B82F6]/20 border border-white/15 hover:border-[#3B82F6]/40 text-white hover:scale-[1.02] active:scale-[0.98]"
+                      }`}
+                  >
+                    {plan.cta}
+                  </a>
+
+                  <!-- Divider -->
+                  <div class={`w-full h-px mb-6 ${plan.highlight ? "bg-[#3B82F6]/30" : "bg-white/10"}`} />
+
+                  {plan.featuresLabel && (
+                    <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-1">
+                      {plan.featuresLabel}
+                    </p>
+                  )}
+
+                  <!-- Features -->
+                  <ul class="flex flex-col gap-3 grow">
+                    {plan.features.map((feature) => (
+                      <li class="flex items-start gap-3">
+                        <span class={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center
+                          ${plan.highlight ? "bg-[#3B82F6]/20 text-[#3B82F6]" : "bg-[#FF6D00]/15 text-[#FF6D00]"}`}
+                        >
+                          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <span class="text-gray-300 text-sm leading-relaxed">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <!-- Footer note -->
+                  <p class="text-gray-600 text-xs mt-6 leading-relaxed border-t border-white/5 pt-4">
+                    {cat.note}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- Banner demo -->
+    <div class="demo-banner mt-16 sm:mt-20 relative rounded-2xl overflow-hidden border border-white/10 bg-white/3 backdrop-blur-xl">
+
+      <!-- Glow de fondo sutil -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/10 via-transparent to-[#FF6D00]/10 pointer-events-none" />
+
+      <div class="relative z-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10">
+
+        <!-- Ícono -->
+        <div class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center">
+          <svg class="w-7 h-7 sm:w-8 sm:h-8 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        </div>
+
+        <!-- Texto -->
+        <div class="flex-1 text-center sm:text-left">
+          <h3 class="font-heading text-lg sm:text-xl lg:text-2xl font-bold text-white mb-1.5">
+            ¿Querés probar una demo?
+          </h3>
+          <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-xl">
+            Escribinos sin compromisos y te daremos acceso a una demo para que puedas probarlo y estar seguro de tu inversión.
+          </p>
+        </div>
+
+        <!-- CTA -->
+        <div class="shrink-0 w-full sm:w-auto">
+          <a
+            href="#contacto"
+            class="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 rounded-xl bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white text-sm font-bold transition-all duration-300 shadow-lg shadow-[#3B82F6]/30 hover:shadow-[#3B82F6]/50 hover:scale-[1.02] active:scale-[0.98] whitespace-nowrap"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Solicitar demo
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // ── Currency toggle ───────────────────────────────────
+  const currencyBtns = document.querySelectorAll<HTMLButtonElement>(".currency-btn");
+  const priceAmounts = document.querySelectorAll<HTMLElement>(".price-amount");
+  const pricePeriods = document.querySelectorAll<HTMLElement>(".price-period");
+  const exchangeInfo = document.getElementById("exchange-info");
+  const exchangeRateText = document.getElementById("exchange-rate-text");
+
+  let usdToCRC: number | null = null;
+  let currentCurrency = "usd";
+
+  // Fetch tipo de cambio (con caché en sessionStorage)
+  async function fetchExchangeRate(): Promise<number | null> {
+    const cached = sessionStorage.getItem("usd_crc_rate");
+    const cachedTime = sessionStorage.getItem("usd_crc_rate_time");
+
+    // Limpiar caché si el valor guardado parece incorrecto (ej: el ₡510 hardcodeado anterior)
+    if (cached && parseFloat(cached) > 499) {
+      sessionStorage.removeItem("usd_crc_rate");
+      sessionStorage.removeItem("usd_crc_rate_time");
+    }
+
+    // Usar caché válido si tiene menos de 1 hora
+    const freshCached = sessionStorage.getItem("usd_crc_rate");
+    const freshTime = sessionStorage.getItem("usd_crc_rate_time");
+    if (freshCached && freshTime && Date.now() - parseInt(freshTime) < 3_600_000) {
+      return parseFloat(freshCached);
+    }
+
+    // Intentar varias APIs públicas en orden
+    const apis = [
+      async () => {
+        const res = await fetch("https://open.er-api.com/v6/latest/USD");
+        const data = await res.json();
+        if (data.result !== "success") throw new Error("API error");
+        return data.rates["CRC"] as number;
+      },
+      async () => {
+        const res = await fetch("https://api.exchangerate-api.com/v4/latest/USD");
+        const data = await res.json();
+        return data.rates["CRC"] as number;
+      },
+    ];
+
+    for (const apiFn of apis) {
+      try {
+        const rate = await apiFn();
+        if (rate && rate > 100 && rate < 500) {
+          sessionStorage.setItem("usd_crc_rate", String(rate));
+          sessionStorage.setItem("usd_crc_rate_time", String(Date.now()));
+          return rate;
+        }
+      } catch {
+        // Intentar siguiente API
+      }
+    }
+
+    // Fallback si todas fallan
+    return 450;
+  }
+
+  function formatCRC(amount: number): string {
+    // Redondear al millar más cercano para precios más limpios
+    const rounded = Math.round((amount * (usdToCRC ?? 450)) / 1000) * 1000;
+    return "₡" + rounded.toLocaleString("es-CR");
+  }
+
+  function updatePrices(currency: "usd" | "crc") {
+    currentCurrency = currency;
+
+    // Precio con descuento (el que se muestra grande)
+    priceAmounts.forEach((el) => {
+      const usd = parseFloat(el.dataset.usd ?? "0");
+      const discounted = Math.round(usd * 0.6);
+      if (currency === "usd") {
+        el.textContent = "$" + discounted;
+        el.classList.add("text-4xl", "sm:text-5xl");
+        el.classList.remove("text-3xl", "sm:text-4xl");
+      } else {
+        el.textContent = formatCRC(discounted);
+        el.classList.add("text-3xl", "sm:text-4xl");
+        el.classList.remove("text-4xl", "sm:text-5xl");
+      }
+    });
+
+    // Precio original tachado
+    document.querySelectorAll<HTMLElement>(".price-original").forEach((el) => {
+      const usd = parseFloat(el.dataset.usd ?? "0");
+      if (currency === "usd") {
+        el.textContent = "$" + usd;
+      } else {
+        el.textContent = formatCRC(usd);
+      }
+    });
+
+    pricePeriods.forEach((el) => {
+      if (currency === "crc") {
+        el.textContent = el.textContent?.replace("+ IVA", "+ IVA") ?? "";
+      }
+    });
+
+    // Toggle estilos de botones
+    currencyBtns.forEach((btn) => {
+      const isActive = btn.dataset.currency === currency;
+      btn.classList.toggle("bg-[#3B82F6]", isActive);
+      btn.classList.toggle("text-white", isActive);
+      btn.classList.toggle("shadow-lg", isActive);
+      btn.classList.toggle("shadow-[#3B82F6]/30", isActive);
+      btn.classList.toggle("text-gray-400", !isActive);
+    });
+
+    // Mostrar/ocultar info del tipo de cambio
+    if (currency === "crc" && exchangeInfo) {
+      exchangeInfo.classList.remove("hidden");
+      exchangeInfo.classList.add("flex");
+    } else if (exchangeInfo) {
+      exchangeInfo.classList.add("hidden");
+      exchangeInfo.classList.remove("flex");
+    }
+  }
+
+  currencyBtns.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const currency = btn.dataset.currency as "usd" | "crc";
+      if (currency === currentCurrency) return;
+
+      if (currency === "crc" && usdToCRC === null) {
+        // Mostrar "cargando" mientras trae el tipo de cambio
+        if (exchangeRateText) exchangeRateText.textContent = "Cargando tipo de cambio...";
+        if (exchangeInfo) {
+          exchangeInfo.classList.remove("hidden");
+          exchangeInfo.classList.add("flex");
+        }
+
+        usdToCRC = await fetchExchangeRate();
+
+        if (exchangeRateText && usdToCRC) {
+          const isFallback = usdToCRC === 450;
+          exchangeRateText.textContent = isFallback
+            ? `1 USD ≈ ₡${usdToCRC.toLocaleString("es-CR")} · Tipo de cambio estimado`
+            : `1 USD = ₡${usdToCRC.toLocaleString("es-CR", { maximumFractionDigits: 0 })} · Tipo de cambio en tiempo real`;
+        }
+      }
+
+      updatePrices(currency);
+    });
+  });
+
+  // ── Tabs (se activan automáticamente si hay más de 1 categoría) ─────
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".plan-tab");
+  const panels = document.querySelectorAll<HTMLElement>(".plan-panel");
+  const tabsContainer = document.getElementById("plan-tabs-container");
+
+  // Mostrar tabs solo si hay más de una categoría visible
+  if (tabs.length > 1 && tabsContainer) {
+    tabsContainer.style.removeProperty("display");
+    tabsContainer.classList.add("flex");
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.category;
+      tabs.forEach((t) => {
+        t.classList.remove("bg-[#3B82F6]", "text-white", "shadow-lg", "shadow-[#3B82F6]/30");
+        t.classList.add("text-gray-400");
+      });
+      tab.classList.add("bg-[#3B82F6]", "text-white", "shadow-lg", "shadow-[#3B82F6]/30");
+      tab.classList.remove("text-gray-400");
+      panels.forEach((panel) => {
+        panel.style.display = panel.dataset.panel === target ? "" : "none";
+      });
+      const demoBanner = document.querySelector<HTMLElement>(".demo-banner");
+      if (demoBanner) {
+        demoBanner.style.display = target === "chatbots" ? "" : "none";
+      }
+    });
+  });
+
+  // ── Scroll animations ─────────────────────────────────
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("animate-in"); }),
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  );
+
+  const header = document.querySelector(".plans-header");
+  if (header) observer.observe(header);
+  document.querySelectorAll(".plan-card").forEach((card) => observer.observe(card));
+  const demoBanner = document.querySelector(".demo-banner");
+  if (demoBanner) observer.observe(demoBanner);
+</script>
+
+<style>
+  .plans-header {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .plans-header.animate-in { opacity: 1; transform: translateY(0); }
+
+  .plan-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  .plan-card.animate-in { opacity: 1; transform: translateY(0); }
+
+  .price-amount {
+    transition: all 0.3s ease;
+  }
+
+  .demo-banner {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .demo-banner.animate-in { opacity: 1; transform: translateY(0); }
+
+  @media (hover: none) {
+    .plan-card:active { transform: scale(0.98); }
+  }
+</style>
