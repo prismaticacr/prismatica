@@ -135,9 +135,25 @@ const socialLinks = [
     <div
       class="pt-6 sm:pt-8 border-t border-white/10 flex flex-col-reverse sm:flex-row items-center justify-between gap-4 sm:gap-6"
     >
-      <p class="text-gray-400 text-xs sm:text-sm text-center sm:text-left">
-        © {currentYear} toDeploy. Todos los derechos reservados.
-      </p>
+<div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 text-center sm:text-left">
+  <p class="text-gray-400 text-xs sm:text-sm">
+    © {currentYear} toDeploy. Todos los derechos reservados.
+  </p>
+  <span class="hidden sm:inline text-white/20 text-xs">·</span>
+  <a
+    href="/terminos"
+    class="text-gray-400 hover:text-[#3b82f6] transition-colors text-xs sm:text-sm"
+  >
+    Términos y Condiciones
+  </a>
+  <span class="hidden sm:inline text-white/20 text-xs">·</span>
+  <a
+    href="/privacidad"
+    class="text-gray-400 hover:text-[#3b82f6] transition-colors text-xs sm:text-sm"
+  >
+    Política de Privacidad
+  </a>
+</div>
 
       <div class="flex items-center gap-3 sm:gap-4">
         {

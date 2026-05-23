@@ -1,0 +1,157 @@
+---
+import LayoutLegal from "@/layouts/LayoutLegal.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<LayoutLegal
+  title="Política de Privacidad"
+  description="Política de privacidad y tratamiento de datos personales de toDeploy Software & Automation."
+>
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-20">
+
+    <div class="mb-8">
+      <span class="inline-block bg-blue-50 text-blue-600 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-4">
+        Privacidad
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-2">
+        Política de Privacidad
+      </h1>
+      <p class="text-sm text-gray-400 pb-6 border-b border-gray-200">
+        Última actualización: mayo de {currentYear} &nbsp;·&nbsp; Costa Rica
+      </p>
+    </div>
+
+    <div class="bg-white border border-gray-200 border-l-4 border-l-blue-500 rounded-lg px-5 py-4 mb-8 text-gray-600 text-sm leading-relaxed">
+      En <strong class="text-gray-900">toDeploy Software & Automation</strong> nos tomamos en serio la privacidad de las personas que visitan nuestro sitio web o contratan nuestros servicios. Esta política explica qué datos recopilamos, cómo los usamos y cuáles son sus derechos conforme a la legislación costarricense.
+    </div>
+
+    <div class="space-y-4">
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">01</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Responsable del tratamiento</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3"><strong class="text-gray-800">toDeploy Software & Automation</strong>, operado por personas físicas con domicilio en Costa Rica.</p>
+        <ul class="space-y-2">
+          {[
+            "Correo electrónico: todeploycr@gmail.com",
+            "WhatsApp: +506 8618-0352",
+            "Sitio web: todeploycr.netlify.app",
+          ].map((item) => (
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">02</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Datos que recopilamos</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Recopilamos únicamente los datos que usted nos proporciona de forma voluntaria a través del formulario de contacto:</p>
+        <ul class="space-y-2 mb-3">
+          {["Nombre completo", "Correo electrónico", "Mensaje o consulta enviada"].map((item) => (
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed mb-2">No recopilamos datos de pago, documentos de identidad ni información sensible a través del sitio web.</p>
+        <p class="text-sm text-gray-600 leading-relaxed">Si nos contacta por WhatsApp, también podremos tener acceso a su número de teléfono y los mensajes intercambiados, sujetos a los términos de WhatsApp.</p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">03</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Cómo usamos sus datos</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Los datos recopilados se utilizan exclusivamente para:</p>
+        <ul class="space-y-2 mb-3">
+          {[
+            "Responder a su consulta o solicitud de servicio",
+            "Dar seguimiento comercial relacionado con la consulta enviada",
+            "Coordinar el inicio o desarrollo de proyectos contratados",
+          ].map((item) => (
+            <li class="flex items-start gap-2 text-sm text-gray-600">
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed">No utilizamos sus datos para envíos masivos de correo, publicidad de terceros ni ninguna otra finalidad no indicada aquí.</p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">04</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Almacenamiento de los datos</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Los datos enviados a través del formulario de contacto <strong class="text-gray-800">llegan directamente a nuestro correo electrónico</strong> y no se almacenan en bases de datos propias del sitio web.</p>
+        <p class="text-sm text-gray-600 leading-relaxed">Conservamos la información el tiempo necesario para atender su consulta o durante la vigencia de la relación comercial. Una vez concluida, los datos pueden ser eliminados a solicitud del usuario.</p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">05</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Compartición con terceros</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">No vendemos, alquilamos ni cedemos sus datos personales a terceros con fines comerciales.</p>
+        <p class="text-sm text-gray-600 leading-relaxed">En el contexto de la prestación de servicios, es posible que utilicemos plataformas de terceros que procesen datos de forma instrumental. Estas plataformas están sujetas a sus propias políticas de privacidad.</p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">06</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Cookies y rastreo</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Nuestro sitio web <strong class="text-gray-800">no utiliza cookies de rastreo, Google Analytics, píxeles publicitarios ni herramientas de seguimiento de comportamiento</strong>.</p>
+        <p class="text-sm text-gray-600 leading-relaxed">El sitio puede utilizar cookies técnicas estrictamente necesarias para su funcionamiento básico, las cuales no almacenan información personal identificable.</p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">07</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Sus derechos</h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4">De acuerdo con la <strong class="text-gray-800">Ley N.° 8968 de Protección de la Persona frente al Tratamiento de sus Datos Personales</strong> de Costa Rica, usted tiene derecho a:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+          {[
+            { title: "Acceso", desc: "Saber qué datos tenemos sobre usted." },
+            { title: "Rectificación", desc: "Solicitar la corrección de datos incorrectos." },
+            { title: "Supresión", desc: "Pedir que eliminemos sus datos personales." },
+            { title: "Oposición", desc: "Oponerse al tratamiento de sus datos." },
+          ].map((right) => (
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <p class="text-sm font-semibold text-gray-900 mb-1">{right.title}</p>
+              <p class="text-xs text-gray-500">{right.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">Para ejercer cualquiera de estos derechos, puede escribirnos a <strong class="text-gray-800">todeploycr@gmail.com</strong> con el asunto "Datos Personales". Responderemos en un plazo máximo de 10 días hábiles.</p>
+        <div class="bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 text-sm text-gray-700">
+          <strong class="text-indigo-800">Marco legal aplicable:</strong> Ley N.° 8968 — Ley de Protección de la Persona frente al Tratamiento de sus Datos Personales, República de Costa Rica.
+        </div>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">08</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Seguridad</h2>
+        <p class="text-sm text-gray-600 leading-relaxed">Aplicamos medidas razonables para proteger la información que nos comparte frente a accesos no autorizados, pérdida o divulgación. Sin embargo, ningún sistema de transmisión de datos por internet puede garantizar seguridad absoluta.</p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1">09</p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">Cambios en esta política</h2>
+        <p class="text-sm text-gray-600 leading-relaxed">Podemos actualizar esta política en cualquier momento. La fecha de "última actualización" al inicio del documento indicará cuándo se realizaron los cambios más recientes. Le recomendamos revisarla periódicamente.</p>
+      </div>
+
+    </div>
+
+    <div class="bg-gray-900 rounded-xl p-8 mt-10 text-center">
+      <p class="text-white font-bold text-lg mb-1">¿Preguntas sobre su privacidad?</p>
+      <p class="text-gray-400 text-sm mb-4">Escríbanos y atenderemos su solicitud a la brevedad.</p>
+      <a href="mailto:todeploycr@gmail.com" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors text-sm">
+        todeploycr@gmail.com
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-gray-200 py-6 text-center text-xs text-gray-400">
+    © {currentYear} toDeploy Software & Automation · Costa Rica ·
+    <a href="/terminos" class="text-blue-500 hover:text-blue-600 transition-colors ml-1">Términos y Condiciones</a>
+  </footer>
+
+</LayoutLegal>

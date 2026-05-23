@@ -1,0 +1,189 @@
+---
+// HeaderLegal.astro
+import logoPrimatica from "@/assets/img/logo.png";
+---
+
+<header
+  id="header-legal"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 sm:py-4 md:py-5 header-legal-animate"
+>
+  <div class="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 sm:gap-3 relative z-10 group">
+      <div class="relative w-10 h-10 shrink-0">
+        <img
+          src={logoPrimatica.src}
+          alt="toDeploy Logo"
+          class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+        />
+      </div>
+      <div>
+        <span class="font-heading font-semibold text-base sm:text-lg text-gray-900">toDeploy</span>
+        <span class="block text-xs text-gray-500">Software & Automation</span>
+      </div>
+    </a>
+
+    <!-- Volver al sitio - Desktop -->
+    <div class="hidden lg:flex items-center gap-4">
+      <a
+        href="/#servicios"
+        class="text-sm font-medium text-gray-500 hover:text-[#3b82f6] transition-colors relative group"
+      >
+        Servicios
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#3b82f6] transition-all duration-300 group-hover:w-full" />
+      </a>
+      <a
+        href="/#portfolio"
+        class="text-sm font-medium text-gray-500 hover:text-[#3b82f6] transition-colors relative group"
+      >
+        Portfolio
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#3b82f6] transition-all duration-300 group-hover:w-full" />
+      </a>
+      <a
+        href="/#contacto"
+        class="bg-[#3b82f6] hover:bg-[#3b82f6]/90 text-white font-bold px-6 py-2 rounded-lg transition-all duration-300 inline-block shadow-lg hover:shadow-[#3b82f6]/30 ml-2"
+      >
+        Contáctanos
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-button-legal"
+      class="lg:hidden p-2 text-gray-700 relative z-10 hover:bg-gray-100 rounded-lg transition-colors"
+      aria-label="Toggle menu"
+    >
+      <svg id="menu-icon-legal" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon-legal" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu-legal"
+    class="lg:hidden bg-white border border-gray-200 shadow-lg mt-3 mx-3 sm:mx-4 rounded-lg p-4 sm:p-6 hidden opacity-0 transition-opacity duration-300"
+  >
+    <nav class="flex flex-col gap-3 sm:gap-4">
+      <a href="/#servicios" class="mobile-link-legal text-sm font-medium text-gray-600 hover:text-[#3b82f6] transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">
+        Servicios
+      </a>
+      <a href="/#portfolio" class="mobile-link-legal text-sm font-medium text-gray-600 hover:text-[#3b82f6] transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">
+        Portfolio
+      </a>
+      <a href="/#nosotros" class="mobile-link-legal text-sm font-medium text-gray-600 hover:text-[#3b82f6] transition-colors py-2 px-3 rounded-lg hover:bg-gray-50">
+        Nosotros
+      </a>
+      <a
+        href="/#contacto"
+        class="mobile-link-legal bg-[#3b82f6] hover:bg-[#3b82f6]/90 text-white font-bold w-full mt-2 py-3 rounded-lg transition-colors text-center text-sm sm:text-base"
+      >
+        Contáctanos
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("header-legal");
+
+  // Entrada animada
+  setTimeout(() => {
+    header?.classList.add("show");
+  }, 100);
+
+  // Scroll effect
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header?.classList.add("scrolled");
+    } else {
+      header?.classList.remove("scrolled");
+    }
+  });
+
+  // Mobile menu
+  const btn = document.getElementById("mobile-menu-button-legal");
+  const menu = document.getElementById("mobile-menu-legal");
+  const menuIcon = document.getElementById("menu-icon-legal");
+  const closeIcon = document.getElementById("close-icon-legal");
+  const links = document.querySelectorAll(".mobile-link-legal");
+
+  function toggleMenu() {
+    const isOpen = !menu?.classList.contains("hidden");
+    if (isOpen) {
+      menu?.classList.add("opacity-0");
+      setTimeout(() => menu?.classList.add("hidden"), 300);
+      menuIcon?.classList.remove("hidden");
+      closeIcon?.classList.add("hidden");
+    } else {
+      menu?.classList.remove("hidden");
+      setTimeout(() => menu?.classList.remove("opacity-0"), 10);
+      menuIcon?.classList.add("hidden");
+      closeIcon?.classList.remove("hidden");
+    }
+  }
+
+  btn?.addEventListener("click", toggleMenu);
+  links.forEach((link) => link.addEventListener("click", () => {
+    if (!menu?.classList.contains("hidden")) toggleMenu();
+  }));
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest("#mobile-menu-button-legal") && !target.closest("#mobile-menu-legal") && !menu?.classList.contains("hidden")) {
+      toggleMenu();
+    }
+  });
+</script>
+
+<style>
+  #header-legal {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .header-legal-animate {
+    transform: translateY(-100px);
+    transition:
+      transform 0.6s ease-out,
+      background 0.3s ease,
+      border-color 0.3s ease,
+      backdrop-filter 0.3s ease,
+      padding 0.3s ease;
+  }
+
+  .header-legal-animate.show {
+    transform: translateY(0);
+  }
+
+  #header-legal.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  @media (max-width: 640px) {
+    #header-legal.scrolled {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1023px) {
+    #header-legal.scrolled {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
+    }
+  }
+
+  #mobile-menu-legal {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+</style>

@@ -1,0 +1,346 @@
+---
+import LayoutLegal from "@/layouts/LayoutLegal.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<LayoutLegal
+  title="Términos y Condiciones"
+  description="Términos y condiciones de uso de los servicios de toDeploy Software & Automation."
+>
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 pt-32 pb-20">
+    <div class="mb-8">
+      <span
+        class="inline-block bg-blue-50 text-blue-600 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-4"
+      >
+        Legal
+      </span>
+      <h1
+        class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight mb-2"
+      >
+        Términos y Condiciones
+      </h1>
+      <p class="text-sm text-gray-400 pb-6 border-b border-gray-200">
+        Última actualización: mayo de {currentYear} &nbsp;·&nbsp; Costa Rica
+      </p>
+    </div>
+
+    <div
+      class="bg-white border border-gray-200 border-l-4 border-l-blue-500 rounded-lg px-5 py-4 mb-8 text-gray-600 text-sm leading-relaxed"
+    >
+      Al contratar o utilizar los servicios de <strong class="text-gray-900"
+        >toDeploy Software & Automation</strong
+      >, usted acepta los presentes términos y condiciones. Le recomendamos
+      leerlos detenidamente antes de iniciar cualquier proyecto.
+    </div>
+
+    <div class="space-y-4">
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          01
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Identificación del proveedor
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Los servicios descritos en este documento son ofrecidos por <strong
+            class="text-gray-800">toDeploy Software & Automation</strong
+          >, operado por personas físicas con domicilio en Costa Rica. Para
+          consultas puede escribir a <strong class="text-gray-800"
+            >todeploycr@gmail.com</strong
+          > o al WhatsApp <strong class="text-gray-800">+506 8618-0352</strong>.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          02
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Servicios ofrecidos
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          toDeploy ofrece los siguientes servicios digitales:
+        </p>
+        <ul class="space-y-2 mb-3">
+          {
+            [
+              "Desarrollo web a medida (sitios corporativos, landing pages, plataformas web)",
+              "Automatización de procesos empresariales",
+              "Diseño e integración de chatbots con inteligencia artificial",
+              "Integración de sistemas y APIs",
+              "Agentes de inteligencia artificial personalizados",
+              "Consultoría y soporte digital mensual",
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Cada servicio se ejecuta según el alcance acordado entre ambas partes
+          antes de iniciar el proyecto.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          03
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Proceso de contratación y pagos
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          La contratación de cualquier servicio implica:
+        </p>
+        <ul class="space-y-2 mb-3">
+          {
+            [
+              "Una cuota inicial de configuración o integración, cuyo monto se define de forma individual según la complejidad del proyecto y se comunica antes de comenzar cualquier trabajo.",
+              "Una mensualidad según el plan contratado (Básico, Estándar u otros acordados).",
+              "Los precios oficiales se expresan en colones costarricenses (CRC). Como referencia, los montos en dólares estadounidenses (USD) se convierten al tipo de cambio vigente al momento de la facturación, disponible en nuestro sitio web.",
+              "Los descuentos promocionales del primer mes varían según el servicio: 40% para planes de chatbot y 20% para planes de sitio web. Aplican únicamente durante el período indicado y no son acumulables.",
+              "Las mensualidades abonadas no son reembolsables una vez iniciado el período de facturación correspondiente. toDeploy evaluará solicitudes de reembolso únicamente en casos donde el servicio no haya podido prestarse por causas imputables exclusivamente a toDeploy.",
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          El pago de la cuota inicial es requisito para dar inicio a cualquier
+          proyecto. toDeploy se reserva el derecho de no comenzar trabajos sin
+          la confirmación del pago correspondiente.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          04
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Correcciones y ajustes incluidos
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          Las correcciones incluidas varían según el tipo de servicio
+          contratado:
+        </p>
+        <ul class="space-y-2 mb-3">
+          {
+            [
+              "Chatbots: todos los planes incluyen 10 horas de correcciones tras la entrega del proyecto. Se entiende por corrección cualquier ajuste sobre funcionalidades ya acordadas y desarrolladas (textos, flujos, comportamientos menores).",
+              "Sitios web: todos los planes incluyen 1 ronda de cambios al mes, que cubre ajustes menores sobre el contenido o diseño ya entregado.",
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          No se consideran correcciones aquellas solicitudes que impliquen
+          funcionalidades nuevas, cambios de alcance o rediseños significativos.
+          Estas se cotizarán por separado.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          05
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Propiedad intelectual
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          Una vez completado el pago total del proyecto, el cliente adquiere los
+          derechos de uso sobre el producto entregado. toDeploy se reserva el
+          derecho de mencionar el proyecto como parte de su portafolio, salvo
+          que el cliente indique lo contrario por escrito.
+        </p>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Las herramientas y plataformas de terceros utilizadas (como n8n,
+          Chatwoot, WhatsApp Business API, entre otras) están sujetas a sus
+          propios términos de uso. toDeploy no asume responsabilidad por cambios
+          en dichas plataformas que afecten la funcionalidad del producto
+          entregado.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          06
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Limitación de responsabilidad
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          toDeploy no garantiza la disponibilidad continua de servicios de
+          terceros (APIs externas, plataformas de mensajería, servidores de
+          alojamiento) sobre los cuales no tiene control directo.
+        </p>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          toDeploy no se hace responsable por pérdidas económicas, datos o daños
+          derivados del mal uso del producto por parte del cliente, ni por
+          interrupciones causadas por terceros.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          07
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Soporte, mantenimiento y capacitación
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          El soporte incluido varía según el tipo de servicio:
+        </p>
+        <ul class="space-y-2 mb-3">
+          {
+            [
+              "Chatbots — soporte técnico: hasta 10 horas mensuales de atención para corrección de errores funcionales y ajustes sobre el sistema entregado.",
+              "Sitios web (Plan Sencillo) — mantenimiento: 1 actualización de contenido por mes. Soporte adicional disponible por ₡15.000/mes.",
+              "Sitios web (Plan Estándar) — mantenimiento: 1 actualización de contenido por mes. Para soporte adicional, consultar precio según necesidades.",
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+          El soporte no cubre modificaciones de alcance, rediseños, nuevas
+          integraciones ni cambios fuera del alcance original. Si se requiere
+          soporte adicional, se puede contratar como servicio complementario.
+        </p>
+        <div
+          class="bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 text-sm text-gray-700"
+        >
+          <strong class="text-gray-900">Capacitación:</strong> todos los planes incluyen
+          <strong class="text-gray-900"
+            >1.5 horas de capacitación gratuita</strong
+          >. Horas adicionales tienen un costo de <strong class="text-gray-900"
+            >₡10.000 por hora</strong
+          >, independientemente del plan contratado.
+        </div>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          08
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Terminación del servicio
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          Cualquiera de las partes puede dar por terminado el acuerdo con un
+          mínimo de <strong class="text-gray-800"
+            >15 días naturales de aviso previo</strong
+          > por escrito (correo electrónico o WhatsApp). toDeploy se reserva el derecho
+          de mantener suspendido el acceso al servicio hasta que cualquier saldo pendiente
+          sea cancelado.
+        </p>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          En caso de impago, toDeploy podrá suspender el servicio hasta
+          regularizar la situación. La cuota de configuración inicial no es
+          reembolsable una vez iniciados los trabajos.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          09
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Legislación aplicable
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Estos términos se rigen por las leyes de la República de Costa Rica.
+          Cualquier disputa será resuelta en primera instancia mediante diálogo
+          directo. En caso de no llegar a un acuerdo, se someterá a los
+          tribunales competentes de Costa Rica.
+        </p>
+      </div>
+
+      <div class="bg-white border border-gray-200 rounded-xl p-6 sm:p-8">
+        <p
+          class="text-xs font-bold tracking-widest uppercase text-blue-500 mb-1"
+        >
+          10
+        </p>
+        <h2 class="text-base font-bold text-gray-900 mb-3">
+          Responsabilidad del cliente
+        </h2>
+<p class="text-sm text-gray-600 leading-relaxed mb-3">Para que toDeploy pueda cumplir con los plazos acordados, el cliente se compromete a entregar en tiempo y forma todos los materiales, contenidos, accesos e información necesarios para el desarrollo del proyecto. La solicitud formal de documentos e información iniciará únicamente una vez confirmado el pago de la cuota inicial.</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-3">
+          Si el cliente no entrega la información requerida en un plazo de <strong
+            class="text-gray-800">7 días naturales</strong
+          > desde la solicitud, toDeploy podrá:
+        </p>
+        <ul class="space-y-2 mb-3">
+          {
+            [
+              "Reprogramar el proyecto según disponibilidad, sin garantía de mantener la fecha de entrega original.",
+              "Pausar el proyecto hasta recibir la información, sin que esto genere obligación de compensación o descuento por parte de toDeploy.",
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <span class="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="bg-gray-900 rounded-xl p-8 mt-10 text-center">
+      <p class="text-white font-bold text-lg mb-1">
+        ¿Tenés alguna consulta sobre estos términos?
+      </p>
+      <p class="text-gray-400 text-sm mb-4">
+        Escribinos directamente y te respondemos a la brevedad.
+      </p>
+      <a
+        href="mailto:todeploycr@gmail.com"
+        class="text-blue-400 hover:text-blue-300 font-semibold transition-colors text-sm"
+      >
+        todeploycr@gmail.com
+      </a>
+    </div>
+  </main>
+
+  <footer
+    class="bg-white border-t border-gray-200 py-6 text-center text-xs text-gray-400"
+  >
+    © {currentYear} toDeploy Software & Automation · Costa Rica ·
+    <a
+      href="/privacidad"
+      class="text-blue-500 hover:text-blue-600 transition-colors ml-1"
+      >Política de Privacidad</a
+    >
+  </footer>
+</LayoutLegal>

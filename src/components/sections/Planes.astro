@@ -11,6 +11,7 @@ interface Plan {
   description?: string;
   featuresLabel?: string;
   features: string[];
+  discountPct?: number;
 }
 
 interface Category {
@@ -24,7 +25,7 @@ const categories: Category[] = [
   {
     id: "chatbots",
     label: "Chatbots",
-    note: "Todos los planes incluyen 10 horas de correciones y requieren una cuota inicial de integración.",
+    note: "Todos los planes incluyen 10 horas de correciones y requieren una cuota inicial de integración. Se pueden contratar mensualidades para adquirir soporte continuo en caso de ser necesario. Funcionalidades del plan estándar pueden ser cotizados dentro del plan básico por un costo extra.",
     plans: [
       {
         name: "Básico",
@@ -33,6 +34,7 @@ const categories: Category[] = [
         cta: "Consultar",
         ctaLink: "#contacto",
         highlight: false,
+        discountPct: 40,
         features: [
           "Chatbot con IA conversacional",
           "WhatsApp",
@@ -50,6 +52,7 @@ const categories: Category[] = [
         cta: "Consultar",
         ctaLink: "#contacto",
         highlight: true,
+        discountPct: 40,
         features: [
           "Todo el plan básico",
           "Aplicación para la gestión de conversaciones",
@@ -66,7 +69,7 @@ const categories: Category[] = [
         cta: "Consultar",
         ctaLink: "#contacto",
         highlight: false,
-        description: "Para proyectos más complejos o con necesidades específicas. Conversamos y construimos exactamente lo que tu negocio necesita.",
+        description: "Para proyectos más complejos o con necesidades específicas. Conversamos y construimos exactamente lo que tu negocio necesita. No necesariamente más caro que los anteriores.",
         featuresLabel: "Algunos ejemplos de lo que se puede hacer:",
         features: [
           "Funcionalidades definidas según tus necesidades",
@@ -80,7 +83,7 @@ const categories: Category[] = [
   {
     id: "web",
     label: "Sitios Web",
-    note: "Todos los planes incluyen soporte técnico y mantenimiento mensual. Se cobra una cuota de configuración al inicio.",
+    note: "Todos los planes incluyen 1 actualización al por mes. Se cobra una cuota de configuración al inicio. Se pueden contratar mensualidades para adquirir soporte continuo en caso de ser necesario. Funcionalidades del plan estándar pueden ser cotizados dentro del plan básico por un costo extra.",
     plans: [
       {
         name: "Sencillo",
@@ -89,14 +92,15 @@ const categories: Category[] = [
         cta: "Consultar",
         ctaLink: "#contacto",
         highlight: false,
+        discountPct: 20,
         features: [
-          "Hasta 6 secciones (hero, sobre nosotros, servicios, galería, testimonios, contacto)",
+          "Hasta 6 secciones (hero, sobre nosotros, servicios, galería, testimonios, contacto, etc...)",
           "Diseño adaptado para celular, tablet y computadora",
           "Formulario de contacto",
           "Botón de WhatsApp flotante",
-          "Galería de fotos",
-          "Sección de testimonios",
-          "FAQ (preguntas frecuentes)",
+          "Diseño hecho a la medida",
+          "Contacto directo en todas las etapas del desarrollo",
+          "Soporte al planear la idea",
           "SEO básico (títulos, descripciones, velocidad de carga)",
           "Indexación en Google",
           "SSL y dominio incluidos",
@@ -110,9 +114,12 @@ const categories: Category[] = [
         cta: "Consultar",
         ctaLink: "#contacto",
         highlight: true,
+        discountPct: 20,
         features: [
           "Todo lo del plan sencillo",
           "Hasta 9 secciones",
+          "Tienda virtual",
+          "Interfaz administrador - usuario",
           "Chatbot que responde preguntas frecuentes las 24 horas desde tu web",
           "Configuración del chatbot con la información de tu negocio",
           "Respuesta prioritaria",
@@ -125,10 +132,9 @@ const categories: Category[] = [
         cta: "Consultar",
         ctaLink: "#contacto",
         highlight: false,
-        description: "Para proyectos más complejos o con necesidades específicas. Conversamos y construimos exactamente lo que tu negocio necesita.",
+        description: "Para proyectos más complejos o con necesidades específicas. Conversamos y construimos exactamente lo que tu negocio necesita. No necesariamente más caro que los anteriores.",
         featuresLabel: "Algunos ejemplos de lo que se puede hacer:",
         features: [
-          "Tienda en línea con carrito y pagos",
           "Sitio empresarial multinivel",
           "Sistema de reservas o citas",
           "Catálogo de productos interactivo",
@@ -163,27 +169,27 @@ const categories: Category[] = [
     <div class="flex flex-col items-center gap-2 mb-8 sm:mb-10">
       <div class="flex items-center gap-1 p-1 bg-white/5 border border-white/10 rounded-xl backdrop-blur-sm shadow-lg">
         <button
-          id="btn-usd"
-          class="currency-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 bg-[#3B82F6] text-white shadow-md shadow-[#3B82F6]/30"
-          data-currency="usd"
-        >
-          USD $
-        </button>
-        <button
           id="btn-crc"
-          class="currency-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 text-gray-400 hover:text-white"
+          class="currency-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 bg-[#3B82F6] text-white shadow-md shadow-[#3B82F6]/30"
           data-currency="crc"
         >
           CRC ₡
         </button>
+        <button
+          id="btn-usd"
+          class="currency-btn px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 text-gray-400 hover:text-white"
+          data-currency="usd"
+        >
+          USD $
+        </button>
       </div>
       <!-- Exchange rate indicator -->
-      <div id="exchange-info" class="hidden items-center gap-1 text-[10px] sm:text-xs text-gray-500 bg-white/5 border border-white/10 rounded-lg px-2.5 py-1.5 backdrop-blur-sm text-center">
+      <div id="exchange-info" class="flex items-center gap-1 text-[10px] sm:text-xs text-gray-500 bg-white/5 border border-white/10 rounded-lg px-2.5 py-1.5 backdrop-blur-sm text-center">
         <svg class="w-3 h-3 text-gray-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
-        <span id="exchange-rate-text">Cargando...</span>
+        <span id="exchange-rate-text">Cargando tipo de cambio...</span>
       </div>
     </div>
 
@@ -226,124 +232,122 @@ const categories: Category[] = [
           </button>
 
           <!-- Track -->
-              <div class="carousel-track-wrapper overflow-hidden">
-              <div class="carousel-track flex md:grid md:grid-cols-3 md:gap-6" style="flex-wrap: nowrap;">         
+          <div class="carousel-track-wrapper overflow-hidden">
+            <div class="carousel-track flex md:grid md:grid-cols-3 md:gap-6" style="flex-wrap: nowrap;">
               {cat.plans.map((plan, index) => (
-              <div
-                class={`plan-card group relative flex flex-col flex-shrink-0 w-full md:w-auto ${plan.highlight ? "md:-translate-y-3" : ""}`}
-                style={`animation-delay: ${index * 0.1}s`}
-              >
-                <!-- Popular badge -->
-                {plan.highlight && (
-                  <div class="absolute -top-4 left-0 right-0 flex justify-center z-10">
-                    <span class="bg-[#3B82F6] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-[#3B82F6]/40 uppercase tracking-wider">
-                      Más Popular
-                    </span>
-                  </div>
-                )}
-
                 <div
-                  class={`relative flex flex-col h-full backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300
-                    ${plan.highlight
-                      ? "bg-white/8 border-2 border-[#3B82F6]/60 shadow-[0_20px_60px_rgba(59,130,246,0.2)]"
-                      : "bg-white/3 border border-white/10 hover:border-[#3B82F6]/30 hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)]"
-                    }`}
+                  class={`plan-card group relative flex flex-col shrink-0 w-full md:w-auto ${plan.highlight ? "md:-translate-y-3" : ""}`}
+                  style={`animation-delay: ${index * 0.1}s`}
                 >
+                  <!-- Popular badge -->
                   {plan.highlight && (
-                    <div class="absolute inset-0 bg-[#3B82F6]/5 pointer-events-none rounded-2xl" />
+                    <div class="absolute -top-4 left-0 right-0 flex justify-center z-10">
+                      <span class="bg-[#3B82F6] text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg shadow-[#3B82F6]/40 uppercase tracking-wider">
+                        Más Popular
+                      </span>
+                    </div>
                   )}
 
-                  <div class="relative z-10 flex flex-col h-full p-6 sm:p-8">
-
-                    <!-- Plan name -->
-                    <div class="mb-6">
-                      <h3 class="font-heading text-xl sm:text-2xl font-bold text-white mb-4">
-                        {plan.name}
-                      </h3>
-
-                      <!-- Price -->
-                      {plan.priceUSD ? (
-                        <div class="min-h-[5rem]">
-                          <div class="flex items-center gap-2 mb-1">
-                            <span
-                              class="price-original line-through text-gray-500 text-base sm:text-lg"
-                              data-usd={plan.priceUSD}
-                            >
-                              ${plan.priceUSD}
-                            </span>
-                            <span class="bg-[#FF6D00]/15 text-[#FF6D00] text-xs font-bold px-2 py-0.5 rounded-full border border-[#FF6D00]/25">
-                              −40% primer mes
-                            </span>
-                          </div>
-                          <div class="price-display flex items-end gap-1">
-                            <span
-                              class="price-amount text-4xl sm:text-5xl font-bold text-white transition-all duration-300"
-                              data-usd={plan.priceUSD}
-                            >
-                              ${Math.round(plan.priceUSD * 0.6)}
-                            </span>
-                            <span class="price-period text-gray-400 text-sm mb-1.5">
-                              {plan.period}
-                            </span>
-                          </div>
-                        </div>
-                      ) : (
-                        <div class="min-h-[5rem] flex flex-col justify-center gap-1">
-                          <p class="text-gray-300 text-lg font-medium">Consultar precio</p>
-                          {plan.description && (
-                            <p class="text-gray-500 text-sm leading-relaxed">{plan.description}</p>
-                          )}
-                        </div>
-                      )}
-                    </div>
-
-                    <!-- CTA Button -->
-                    <a
-                      href={plan.ctaLink}
-                      class={`w-full text-center py-3 px-6 rounded-xl text-sm font-bold transition-all duration-300 mb-6 block
-                        ${plan.highlight
-                          ? "bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white shadow-lg shadow-[#3B82F6]/30 hover:shadow-[#3B82F6]/50 hover:scale-[1.02] active:scale-[0.98]"
-                          : "bg-white/8 hover:bg-[#3B82F6]/20 border border-white/15 hover:border-[#3B82F6]/40 text-white hover:scale-[1.02] active:scale-[0.98]"
-                        }`}
-                    >
-                      {plan.cta}
-                    </a>
-
-                    <!-- Divider -->
-                    <div class={`w-full h-px mb-6 ${plan.highlight ? "bg-[#3B82F6]/30" : "bg-white/10"}`} />
-
-                    {plan.featuresLabel && (
-                      <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
-                        {plan.featuresLabel}
-                      </p>
+                  <div
+                    class={`relative flex flex-col h-full backdrop-blur-xl rounded-2xl overflow-hidden transition-all duration-300
+                      ${plan.highlight
+                        ? "bg-white/8 border-2 border-[#3B82F6]/60 shadow-[0_20px_60px_rgba(59,130,246,0.2)]"
+                        : "bg-white/3 border border-white/10 hover:border-[#3B82F6]/30 hover:shadow-[0_20px_40px_rgba(59,130,246,0.1)]"
+                      }`}
+                  >
+                    {plan.highlight && (
+                      <div class="absolute inset-0 bg-[#3B82F6]/5 pointer-events-none rounded-2xl" />
                     )}
 
-                    <!-- Features -->
-                    <ul class="flex flex-col gap-3 grow">
-                      {plan.features.map((feature) => (
-                        <li class="flex items-start gap-3">
-                          <span class={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center
-                            ${plan.highlight ? "bg-[#3B82F6]/20 text-[#3B82F6]" : "bg-[#FF6D00]/15 text-[#FF6D00]"}`}
-                          >
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-                            </svg>
-                          </span>
-                          <span class="text-gray-300 text-sm leading-relaxed">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div class="relative z-10 flex flex-col h-full p-6 sm:p-8">
 
-                    <!-- Footer note -->
-                    <p class="text-gray-600 text-xs mt-6 leading-relaxed border-t border-white/5 pt-4">
-                      {cat.note}
-                    </p>
+                      <!-- Plan name -->
+                      <div class="mb-6">
+                        <h3 class="font-heading text-xl sm:text-2xl font-bold text-white mb-4">
+                          {plan.name}
+                        </h3>
+
+                        <!-- Price -->
+                        {plan.priceUSD ? (
+                          <div class="min-h-20">
+                            <div class="flex items-center gap-2 mb-1">
+                              <span
+                                class="price-original line-through text-gray-500 text-base sm:text-lg"
+                                data-usd={plan.priceUSD}
+                                data-discount={plan.discountPct ?? 40}
+                              >
+                                ${plan.priceUSD}
+                              </span>
+                              <span class="bg-[#FF6D00]/15 text-[#FF6D00] text-xs font-bold px-2 py-0.5 rounded-full border border-[#FF6D00]/25">
+                                −{plan.discountPct ?? 40}% primer mes
+                              </span>
+                            </div>
+                            <div class="price-display flex items-end gap-1">
+                              <span
+                                class="price-amount text-4xl sm:text-5xl font-bold text-white transition-all duration-300"
+                                data-usd={plan.priceUSD}
+                                data-discount={plan.discountPct ?? 40}
+                              >
+                                ${Math.round(plan.priceUSD * (1 - (plan.discountPct ?? 40) / 100))}
+                              </span>
+                              <span class="price-period text-gray-400 text-sm mb-1.5">
+                                {plan.period}
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          <div class="min-h-20 flex flex-col justify-center gap-1">
+                            <p class="text-gray-300 text-lg font-medium">Consultar precio</p>
+                            {plan.description && (
+                              <p class="text-gray-500 text-sm leading-relaxed">{plan.description}</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      <!-- CTA Button -->
+                      <a
+                        href={plan.ctaLink}
+                        class={`w-full text-center py-3 px-6 rounded-xl text-sm font-bold transition-all duration-300 mb-6 block
+                          ${plan.highlight
+                            ? "bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white shadow-lg shadow-[#3B82F6]/30 hover:shadow-[#3B82F6]/50 hover:scale-[1.02] active:scale-[0.98]"
+                            : "bg-white/8 hover:bg-[#3B82F6]/20 border border-white/15 hover:border-[#3B82F6]/40 text-white hover:scale-[1.02] active:scale-[0.98]"
+                          }`}
+                      >
+                        {plan.cta}
+                      </a>
+
+                      <!-- Divider -->
+                      <div class={`w-full h-px mb-6 ${plan.highlight ? "bg-[#3B82F6]/30" : "bg-white/10"}`} />
+
+                      {plan.featuresLabel && (
+                        <p class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3">
+                          {plan.featuresLabel}
+                        </p>
+                      )}
+
+                      <!-- Features -->
+                      <ul class="flex flex-col gap-3 grow">
+                        {plan.features.map((feature) => (
+                          <li class="flex items-start gap-3">
+                            <span class={`mt-0.5 shrink-0 w-5 h-5 rounded-full flex items-center justify-center
+                              ${plan.highlight ? "bg-[#3B82F6]/20 text-[#3B82F6]" : "bg-[#FF6D00]/15 text-[#FF6D00]"}`}
+                            >
+                              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </span>
+                            <span class="text-gray-300 text-sm leading-relaxed">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-              </div>
+
           <!-- Dots indicadores (solo mobile/tablet) -->
           <div class="carousel-dots flex justify-center gap-2 mt-6 md:hidden">
             {cat.plans.map((_, i) => (
@@ -354,12 +358,18 @@ const categories: Category[] = [
           </div>
 
         </div>
+      <p class="flex items-start gap-2 justify-center text-center text-gray-500 text-xs mt-6 max-w-xl mx-auto leading-relaxed">
+        <svg class="w-3.5 h-3.5 shrink-0 mt-0.5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        {cat.note}
+      </p>
       </div>
     ))}
 
     <!-- Banner demo -->
     <div class="demo-banner mt-16 sm:mt-20 relative rounded-2xl overflow-hidden border border-white/10 bg-white/3 backdrop-blur-xl">
-      <div class="absolute inset-0 bg-gradient-to-r from-[#3B82F6]/10 via-transparent to-[#FF6D00]/10 pointer-events-none" />
+      <div class="absolute inset-0 bg-linear-to-r from-[#3B82F6]/10 via-transparent to-[#FF6D00]/10 pointer-events-none" />
       <div class="relative z-10 flex flex-col sm:flex-row items-center gap-6 sm:gap-8 p-6 sm:p-8 lg:p-10">
         <div class="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#3B82F6]/10 border border-[#3B82F6]/20 flex items-center justify-center">
           <svg class="w-7 h-7 sm:w-8 sm:h-8 text-[#3B82F6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -398,14 +408,13 @@ const categories: Category[] = [
   // ── Currency toggle ───────────────────────────────────
   const currencyBtns = document.querySelectorAll<HTMLButtonElement>(".currency-btn");
   const priceAmounts = document.querySelectorAll<HTMLElement>(".price-amount");
-  const pricePeriods = document.querySelectorAll<HTMLElement>(".price-period");
   const exchangeInfo = document.getElementById("exchange-info");
   const exchangeRateText = document.getElementById("exchange-rate-text");
 
   let usdToCRC: number | null = null;
-  let currentCurrency = "usd";
+  let currentCurrency = "crc";
 
-  async function fetchExchangeRate(): Promise<number | null> {
+  async function fetchExchangeRate(): Promise<number> {
     const cached = sessionStorage.getItem("usd_crc_rate");
     if (cached && parseFloat(cached) > 499) {
       sessionStorage.removeItem("usd_crc_rate");
@@ -453,7 +462,8 @@ const categories: Category[] = [
     currentCurrency = currency;
     priceAmounts.forEach((el) => {
       const usd = parseFloat(el.dataset.usd ?? "0");
-      const discounted = Math.round(usd * 0.6);
+      const discount = parseFloat(el.dataset.discount ?? "40");
+      const discounted = Math.round(usd * (1 - discount / 100));
       if (currency === "usd") {
         el.textContent = "$" + discounted;
         el.classList.add("text-4xl", "sm:text-5xl");
@@ -488,6 +498,20 @@ const categories: Category[] = [
       exchangeInfo.classList.remove("flex");
     }
   }
+
+  // Inicializar en CRC al cargar
+  async function initCRC() {
+    usdToCRC = await fetchExchangeRate();
+    if (exchangeRateText && usdToCRC) {
+      const isFallback = usdToCRC === 450;
+      exchangeRateText.textContent = isFallback
+        ? `1 USD ≈ ₡${usdToCRC.toLocaleString("es-CR")} · Tipo de cambio estimado`
+        : `1 USD = ₡${usdToCRC.toLocaleString("es-CR", { maximumFractionDigits: 0 })} · Tipo de cambio en tiempo real`;
+    }
+    updatePrices("crc");
+  }
+
+  initCRC();
 
   currencyBtns.forEach((btn) => {
     btn.addEventListener("click", async () => {
@@ -551,107 +575,105 @@ const categories: Category[] = [
   const demoBanner = document.querySelector(".demo-banner");
   if (demoBanner) observer.observe(demoBanner);
 
-// ── Carrusel mobile ───────────────────────────────────
-document.querySelectorAll<HTMLElement>(".plan-panel").forEach((panel) => {
-  const track = panel.querySelector<HTMLElement>(".carousel-track");
-  const dots = panel.querySelectorAll<HTMLElement>(".dot");
-  const prevBtn = panel.querySelector<HTMLButtonElement>(".carousel-prev");
-  const nextBtn = panel.querySelector<HTMLButtonElement>(".carousel-next");
-  if (!track) return;
-
-  const cards = Array.from(track.querySelectorAll<HTMLElement>(".plan-card"));
-  const total = cards.length;
-  let current = 0;
-
-  function isMobile(): boolean {
-    return window.innerWidth < 768;
-  }
-
-  function setupCards() {
-      if (!track) return;
-    if (isMobile()) {
-      track.style.width = `${total * 100}%`;
-      cards.forEach((card) => {
-        card.style.width = `${100 / total}%`;
-        card.style.flexShrink = "0";
-      });
-    } else {
-      track.style.width = "";
-      cards.forEach((card) => {
-        card.style.width = "";
-        card.style.flexShrink = "";
-      });
-    }
-  }
-
-  function updateButtons() {
-    if (!prevBtn || !nextBtn) return;
-    if (!isMobile()) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-      return;
-    }
-    prevBtn.style.display = "";
-    nextBtn.style.display = "";
-    prevBtn.style.opacity = current === 0 ? "0" : "1";
-    prevBtn.style.pointerEvents = current === 0 ? "none" : "auto";
-    nextBtn.style.opacity = current === total - 1 ? "0" : "1";
-    nextBtn.style.pointerEvents = current === total - 1 ? "none" : "auto";
-  }
-
-  function updateDots(index: number) {
-    dots.forEach((d, i) => {
-      if (i === index) {
-        d.classList.add("bg-[#3B82F6]", "w-4");
-        d.classList.remove("bg-white/20", "w-2");
-      } else {
-        d.classList.remove("bg-[#3B82F6]", "w-4");
-        d.classList.add("bg-white/20", "w-2");
-      }
-    });
-  }
-
-  function goTo(index: number) {
-    if (index < 0 || index >= total) return;
-    current = index;
-    // Cada slide ocupa 1/total del track, así que desplazamos por fracción
-    const pct = (current / total) * 100;
+  // ── Carrusel mobile ───────────────────────────────────
+  document.querySelectorAll<HTMLElement>(".plan-panel").forEach((panel) => {
+    const track = panel.querySelector<HTMLElement>(".carousel-track");
+    const dots = panel.querySelectorAll<HTMLElement>(".dot");
+    const prevBtn = panel.querySelector<HTMLButtonElement>(".carousel-prev");
+    const nextBtn = panel.querySelector<HTMLButtonElement>(".carousel-next");
     if (!track) return;
-    track.style.transition = "transform 0.35s ease";
-    track.style.transform = `translateX(-${pct}%)`;
-    updateDots(current);
-    updateButtons();
-  }
 
-  // Init
-  setupCards();
-  track.style.transform = "translateX(0%)";
-  updateButtons();
-  updateDots(0);
+    const cards = Array.from(track.querySelectorAll<HTMLElement>(".plan-card"));
+    const total = cards.length;
+    let current = 0;
 
-  prevBtn?.addEventListener("click", () => goTo(current - 1));
-  nextBtn?.addEventListener("click", () => goTo(current + 1));
-
-  let touchStartX = 0;
-  track.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-  }, { passive: true });
-  track.addEventListener("touchend", (e) => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) goTo(current + 1);
-      else goTo(current - 1);
+    function isMobile(): boolean {
+      return window.innerWidth < 768;
     }
-  }, { passive: true });
 
-  window.addEventListener("resize", () => {
-    track.style.transition = "none";
+    function setupCards() {
+      if (!track) return;
+      if (isMobile()) {
+        track.style.width = `${total * 100}%`;
+        cards.forEach((card) => {
+          card.style.width = `${100 / total}%`;
+          card.style.flexShrink = "0";
+        });
+      } else {
+        track.style.width = "";
+        cards.forEach((card) => {
+          card.style.width = "";
+          card.style.flexShrink = "";
+        });
+      }
+    }
+
+    function updateButtons() {
+      if (!prevBtn || !nextBtn) return;
+      if (!isMobile()) {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+        return;
+      }
+      prevBtn.style.display = "";
+      nextBtn.style.display = "";
+      prevBtn.style.opacity = current === 0 ? "0" : "1";
+      prevBtn.style.pointerEvents = current === 0 ? "none" : "auto";
+      nextBtn.style.opacity = current === total - 1 ? "0" : "1";
+      nextBtn.style.pointerEvents = current === total - 1 ? "none" : "auto";
+    }
+
+    function updateDots(index: number) {
+      dots.forEach((d, i) => {
+        if (i === index) {
+          d.classList.add("bg-[#3B82F6]", "w-4");
+          d.classList.remove("bg-white/20", "w-2");
+        } else {
+          d.classList.remove("bg-[#3B82F6]", "w-4");
+          d.classList.add("bg-white/20", "w-2");
+        }
+      });
+    }
+
+    function goTo(index: number) {
+      if (index < 0 || index >= total) return;
+      current = index;
+      const pct = (current / total) * 100;
+      if (!track) return;
+      track.style.transition = "transform 0.35s ease";
+      track.style.transform = `translateX(-${pct}%)`;
+      updateDots(current);
+      updateButtons();
+    }
+
     setupCards();
-    const pct = isMobile() ? (current / total) * 100 : 0;
-    track.style.transform = `translateX(-${pct}%)`;
+    track.style.transform = "translateX(0%)";
     updateButtons();
+    updateDots(0);
+
+    prevBtn?.addEventListener("click", () => goTo(current - 1));
+    nextBtn?.addEventListener("click", () => goTo(current + 1));
+
+    let touchStartX = 0;
+    track.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+    track.addEventListener("touchend", (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goTo(current + 1);
+        else goTo(current - 1);
+      }
+    }, { passive: true });
+
+    window.addEventListener("resize", () => {
+      track.style.transition = "none";
+      setupCards();
+      const pct = isMobile() ? (current / total) * 100 : 0;
+      track.style.transform = `translateX(-${pct}%)`;
+      updateButtons();
+    });
   });
-});
 </script>
 
 <style>
